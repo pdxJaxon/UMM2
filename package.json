@@ -1,0 +1,14 @@
+{
+  "name": "umm2",
+  "version": "1.0.0",
+  "description": "UMockMe NodeJS Version",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jaxon",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
