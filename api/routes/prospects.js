@@ -85,12 +85,17 @@ router.post('/',(req,resp,next) => {
 router.get('/:prospectId', (req,resp,next) => {
 	const id = req.params.prospectId;
 	
-	resp.status(200).json({
-		message: "Prospect By ID Retrieved",
-		id: id 
-	});
+	Prospect.findById(prospectId)
+		.exec()
+		.then(p => {
+			console.log(p);
+			resp.status(200).json(p);
+		})
+		.catch(e => {
+			console.log(e);
+			resp.status(500).json({error:e});
 	
-})
+});
 
 
 router.patch('/:prospectId', (req,resp,next) => {
