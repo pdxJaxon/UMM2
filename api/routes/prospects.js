@@ -10,8 +10,16 @@ router.get('/',(req,resp,next) => {
 		.where()
 		.exec()
 		.then(docs => {
-			console.log(docs)
-			resp.status(200).json(docs);
+			if(docs.length > 0){
+				console.log(docs)
+				resp.status(200).json(docs);
+			}
+			else {
+				resp.status(404).json({
+					message: "Entry Not Found"
+				})
+			}
+			
 		})
 		.catch(err => {
 			console.log(err);
@@ -100,13 +108,26 @@ router.get('/:prospectId', (req,resp,next) => {
 
 router.patch('/:prospectId', (req,resp,next) => {
 	const id = req.params.prospectId;
+	const updateOps = {};
+
+	for (const [key,value] of Object.entries(req.body)) {
+		updateOps[key] = value;
+	}
+
+	Prospect.update({ _id: id },{ $set: updateOps })
+		.exec()
+		.then(result => {
+			console.log(result);
+			resp.status(200).json(result);				
+		})
+		.catch(err => {
+			console.log(err);
+			resp.status(500).json({
+				Error: err
+			})
+		});
 	
-	resp.status(200).json({
-		message: "Prospect By ID Updated",
-		id: id 
-	});
-	
-})
+});
 
 
 
