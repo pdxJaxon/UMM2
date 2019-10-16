@@ -1,6 +1,6 @@
 {
 	"env": {
-		"MONGO_PWD": "Glock#19",
-		PORT: 3001
+		"MONGO_PWD": "Glock%2334",
+		"PORT": "3001"
 	}
 }

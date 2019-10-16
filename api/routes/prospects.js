@@ -5,9 +5,20 @@ const Prospect = require('../models/prospect');
 const mongoose = require('mongoose');
 
 router.get('/',(req,resp,next) => {
-	resp.status(200).json({
-		message: 'this is get prospects',
-		status: 'ok'
+
+	Prospect.find()
+		.where()
+		.exec()
+		.then(docs => {
+			console.log(docs)
+			resp.status(200).json(docs);
+		})
+		.catch(err => {
+			console.log(err);
+			resp.status(500).json({
+				error:err 
+		});
+
 	})
 });
 
@@ -34,46 +45,14 @@ router.post('/',(req,resp,next) => {
 		Visits: req.body.Visits
 	});
 
-	prospect.save().then(result => {
-		console.log(result);
-	})
-	.catch(err => console.log(err));
+	prospect
+		.save()
+		.then(result => {
+			console.log(result);
+			})
+		.catch(err => console.log(err));
 
 
-
-	/*const FName = req.body.FName;
-	const LName = req.body.LName;
-	const College = req.body.College;
-	const Position = req.body.Position;
-	const Height = req.body.Height;
-	const Weight = req.body.Weight;
-	const Arms = req.body.Arms;
-	const Hands = req.body.Hands;
-	const Age = req.body.Age;
-	const Year = req.body.Year;
-	const SparqScore = req.body.SparqScore;
-	const UMMScore = req.body.UMMScore;
-	const NFLGrade = req.body.NFLGrade;
-	const CombineResults = req.body.CombineResults;
-	const Derogs = req.body.Derogs;
-	const Visits = req.body.Visits;*/
-
-
-	/*console.log(FName);
-	console.log(LName);
-	console.log(College);
-	console.log(Position);
-	console.log(Height);
-	console.log(Weight);
-	console.log(Arms);
-	console.log(Hands);
-	console.log(Age);
-	console.log(SparqScore);
-	console.log(UMMScore);
-	console.log(NFLGrade);
-	console.log(CombineResults);
-	console.log(Derogs);
-	console.log(Visits);*/
 
 	resp.status(201).json({
 		message: 'this is posty prospects',
@@ -84,18 +63,39 @@ router.post('/',(req,resp,next) => {
 
 router.get('/:prospectId', (req,resp,next) => {
 	const id = req.params.prospectId;
+
+	console.log("Valid",mongoose.Types.ObjectId.isValid(id));
 	
-	Prospect.findById(prospectId)
+	Prospect.findById(id)
 		.exec()
-		.then(p => {
-			console.log(p);
-			resp.status(200).json(p);
+		.then(data =>{
+			resp.status(200).json(data);	
 		})
-		.catch(e => {
-			console.log(e);
-			resp.status(500).json({error:e});
+		.catch(err =>{
+			resp.status(500).json({
+				Message:err,
+				id:id,
+				Valid:mongoose.Types.ObjectId.isValid(id)})
+		});
+
+	// console.log("ONE")
+	// myQry = Prospect.find();
+	// console.log("TWO")
+
+	// myQry.exec((err,data) => {
+	// 	console.log("THREE")
+	// 	resp.status(200).json(data)
+	// }
+	// );
+
 	
-});
+
+})
+	
+	
+	
+
+
 
 
 router.patch('/:prospectId', (req,resp,next) => {
@@ -114,15 +114,17 @@ router.patch('/:prospectId', (req,resp,next) => {
 router.delete('/:prospectId', (req,resp,next) => {
 	const id = req.params.prospectId;
 	
-	resp.status(200).json({
-		message: "Prospect By ID Deleted",
-		id: id 
+	Prospect.remove({_id: id})
+	.exec()
+	.then(result => {
+		resp.status(200).json(result);
+	})
+	.catch(e => {
+		console.log(e);
+		resp.status(500).json({Error:e})
 	});
 	
-})
-
-
-
+});
 
 
 

@@ -11,7 +11,7 @@ client.connect(err => {
   client.close();
 });*/
 
-const myPWD = process.env.MONGO_PWD || 'Glock#19';
+const myPWD = process.env.MONGO_PWD || 'Glock%2334';
 
 const express = require('express');
 
@@ -36,7 +36,8 @@ const pickRoutes = require('./api/routes/Picks');
 mongoose.connect(
 	'mongodb+srv://Jackson:' + 
 	myPWD + 
-	'@cluster0-dtb9x.mongodb.net/test?retryWrites=true&w=majority'
+	'@cluster0-dtb9x.mongodb.net/test?retryWrites=true&w=majority',
+	{useNewUrlParser:true}
 );
 
 
