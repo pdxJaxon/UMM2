@@ -1,20 +1,66 @@
 const express = require('express')
 const router = express.Router();
 
+const Team = require('../models/team');
+const mongoose = require('mongoose');
+
 router.get('/',(req,resp,next) => {
-	resp.status(200).json({
-		message: 'this is get teams',
-		status: 'ok'
+
+	Team.find()
+		.where()
+		.exec()
+		.then(docs => {
+			if(docs.length > 0){
+				console.log(docs)
+				resp.status(200).json(docs);
+			}
+			else {
+				resp.status(404).json({
+					message: "Entry Not Found"
+				})
+			}
+			
+		})
+		.catch(err => {
+			console.log(err);
+			resp.status(500).json({
+				error:err 
+		});
+
 	})
 });
+
+
+
 
 
 router.post('/',(req,resp,next) => {
+
+	const team = new Team({
+		_id: new mongoose.Types.ObjectId(),
+		City: req.body.City,
+		Name: req.body.Name
+	});
+
+	team
+		.save()
+		.then(result => {
+			console.log(result);
+			})
+		.catch(err => console.log(err));
+
+
+
 	resp.status(201).json({
-		message: 'this is post teams',
-		status: 'ok'
-	})
+		message: 'this is posty team',
+		status: 'okay',
+		Team: team
+	});
 });
+
+
+
+
 
 router.get('/:teamId', (req,resp,next) => {
 	const id = req.params.teamId;
