@@ -1,13 +1,12 @@
 const express = require('express')
 const router = express.Router();
 
-const Team = require('../models/team');
+const team = require('../models/team');
 const mongoose = require('mongoose');
 
 router.get('/',(req,resp,next) => {
 
-	Team.find()
-		.where()
+	team.find()
 		.exec()
 		.then(docs => {
 			if(docs.length > 0){
@@ -36,10 +35,10 @@ router.get('/',(req,resp,next) => {
 
 router.post('/',(req,resp,next) => {
 
-	const team = new Team({
+	const team = new team({
 		_id: new mongoose.Types.ObjectId(),
-		City: req.body.City,
-		Name: req.body.Name
+		city: req.body.city,
+		name: req.body.name
 	});
 
 	team
