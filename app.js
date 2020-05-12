@@ -1,17 +1,9 @@
-//mongodb+srv://Jackson:Glock#19@cluster0-dtb9x.mongodb.net/test?retryWrites=true&w=majority
 
-//Glock#19
-
-/*const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://Jackson:Glock#19@cluster0-dtb9x.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});*/
-
-const myPWD = process.env.MONGO_PWD || 'Glock%2334';
+const myPWD = process.env.DB_PWD || 'Glock%2334';
+const myHOST = process.env.DB_HOST || 'localhost';
+const myUSR = process.env.DB_USER || 'admin';
+const myDB = process.env.DB_NAME || 'UMockMe';
+const myPLATFORM = process.env.DB_PLATFORM || 'mysql';
 
 const express = require('express');
 
@@ -20,8 +12,10 @@ const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
-const mongoose = require('mongoose');
+const {Sequelize, Model, DataTypes} = require('sequelize');
 
+//in memory db for testing
+const sequelize = new Sequelize('sqlite::memory:');
 
 
 const prospectRoutes = require('./api/routes/prospects');
@@ -33,12 +27,14 @@ const draftRoundRoutes = require('./api/routes/DraftRounds');
 const pickRoutes = require('./api/routes/Picks');
 
 
-mongoose.connect(
-	'mongodb+srv://Jackson:' + 
-	myPWD + 
-	'@cluster0-dtb9x.mongodb.net/test?retryWrites=true&w=majority',
-	{useNewUrlParser:true}
-);
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
 
 
 
