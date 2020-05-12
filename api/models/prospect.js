@@ -1,37 +1,24 @@
-const mongoose = require('mongoose');
-
-const prospectSchema = mongoose.Schema({
-	_id: mongoose.Schema.Types.ObjectId,
-	FName: String,
-	LName: String,
-	Age: Number,
-	College: String,
-	Position: String,
-	Height: String,
-	Weight: String,
-	Arms: String,
-	Hands: String,
-	Year: String,
-	SparqScore: Number,
-	UMMScore: Number,
-	NFLGrade: Number,
-	CombineResults: {
-		FortyYardDash: Number,
-		ThreeCone: Number,
-		BenchPress: Number,
-		VerticalJump: Number,
-		BroadJump: Number,
-		TwentyYardShuttle: Number,
-		SixtyYardShuttle: Number
-	},
-	Derogs: [{
-		Type: String,
-		Severity: Number
-	}],
-	Visits: [{
-		Team: String,
-		VisitType: String
-	}]
+const Sequelize = require('sequelize');
+/*
+const prospectSchema = Sequelize.define('prospect',{
+	_id: {type:Sequelize.INTEGER,autoincrement:true,primaryKey:true},
+	FName: Sequelize.STRING,
+	LName: Sequelize.STRING,
+	Age: Sequelize.NUMBER ,
+	College: Sequelize.STRING,
+	Position: Sequelize.STRING,
+	Height: Sequelize.STRING,
+	Weight: Sequelize.STRING,
+	Arms: Sequelize.STRING,
+	Hands: Sequelize.STRING,
+	Year: Sequelize.STRING,
+	SparqScore: Sequelize.NUMBER,
+	UMMScore: Sequelize.NUMBER,
+	NFLGrade: Sequelize.NUMBER
 });
 
-module.exports = mongoose.model('Prospect',prospectSchema);
+
+module.exports = Sequelize.models.Prospect;
+*/
+
+

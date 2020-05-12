@@ -1,9 +1,12 @@
-const mongoose = require('mongoose');
+const sequelize = require('sequelize');
+//const DataTypes = require('sqllite');
 
-const teamSchema = mongoose.Schema({
-	_id: mongoose.Schema.Types.ObjectId,
-	city: String,
-	name: String
+/*
+const teamSchema = sequelize.define('Team',{
+	_id: {type:sequelize.INTEGER,autoincrement:true,primaryKey:true},
+	city: sequelize.STRING,
+	name: sequelize.STRING
 });
 
-module.exports = mongoose.model('Team',teamSchema);
+module.exports = sequelize.models.Team;
+*/
