@@ -1,4 +1,4 @@
-const sequelize = require('./../db/sequelize')
+const sequelize = require('../../db/sequelize')
 const {Sequelize, Model, DataTypes} = require('sequelize');
 
 
@@ -21,4 +21,12 @@ module.exports = sequelize.define('team',{
 		field: 'nickname',
 		type: Sequelize.STRING
 	}
-})
+	},
+	{
+	
+  	freezeTableName: true,
+  	timestamps: false,
+  	// define the table's name
+  	tableName: 'team'
+  }
+)

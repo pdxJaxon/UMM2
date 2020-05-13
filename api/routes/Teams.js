@@ -7,7 +7,6 @@ const team = require('../models/team');
 router.get('/',(req,resp,next) => {
 
 	team.findAll()
-		.exec()
 		.then(teams => {
 			if(teams.length > 0){
 				console.log(teams)
