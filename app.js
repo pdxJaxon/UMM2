@@ -12,7 +12,7 @@ const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
-
+const sequelize = require('./db/sequelize')
 //const {Sequelize, Model, DataTypes} = require('sequelize');
 
 
