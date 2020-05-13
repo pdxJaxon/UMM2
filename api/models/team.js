@@ -1,12 +1,24 @@
-const sequelize = require('sequelize');
-//const DataTypes = require('sqllite');
+const sequelize = require('./../db/sequelize')
+const {Sequelize, Model, DataTypes} = require('sequelize');
 
-/*
-const teamSchema = sequelize.define('Team',{
-	_id: {type:sequelize.INTEGER,autoincrement:true,primaryKey:true},
-	city: sequelize.STRING,
-	name: sequelize.STRING
-});
 
-module.exports = sequelize.models.Team;
-*/
+module.exports = sequelize.define('team',{
+	id: {
+		field: 'teamId',
+		type: Sequelize.INTEGER,
+		primaryKey: true,
+		autoincrement: true
+	},
+	Abbreviation: {
+		field: 'abbr',
+		type: Sequelize.STRING
+	},
+	City: {
+		field: 'city',
+		type: Sequelize.STRING
+	},
+	Nickname: {
+		field: 'nickname',
+		type: Sequelize.STRING
+	}
+})

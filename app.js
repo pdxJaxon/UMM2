@@ -12,10 +12,9 @@ const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
-const {Sequelize, Model, DataTypes} = require('sequelize');
 
-//in memory db for testing
-const sequelize = new Sequelize('sqlite::memory:');
+//const {Sequelize, Model, DataTypes} = require('sequelize');
+
 
 
 const prospectRoutes = require('./api/routes/prospects');
