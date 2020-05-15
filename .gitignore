@@ -1,13 +1,6 @@
-# dependencies
-node_modules/
-
-# testing
-/client/coverage
-
-# production
-/client/build
-
-# misc
+**/node_modules
+**/coverage
+**/build
 .DS_Store
 .env.local
 .env.development.local
