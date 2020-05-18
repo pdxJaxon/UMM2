@@ -2,16 +2,15 @@ const express = require('express')
 const router = express.Router();
 
 const team = require('../models/team');
-const mongoose = require('mongoose');
+
 
 router.get('/',(req,resp,next) => {
 
-	team.find()
-		.exec()
-		.then(docs => {
-			if(docs.length > 0){
-				console.log(docs)
-				resp.status(200).json(docs);
+	team.findAll()
+		.then(teams => {
+			if(teams.length > 0){
+				console.log(teams)
+				resp.status(200).json(teams);
 			}
 			else {
 				resp.status(404).json({
@@ -34,20 +33,6 @@ router.get('/',(req,resp,next) => {
 
 
 router.post('/',(req,resp,next) => {
-
-	const team = new team({
-		_id: new mongoose.Types.ObjectId(),
-		city: req.body.city,
-		name: req.body.name
-	});
-
-	team
-		.save()
-		.then(result => {
-			console.log(result);
-			})
-		.catch(err => console.log(err));
-
 
 
 	resp.status(201).json({

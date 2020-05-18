@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router();
 
 const Prospect = require('../models/prospect');
-const mongoose = require('mongoose');
 
 router.get('/',(req,resp,next) => {
 
@@ -32,7 +31,7 @@ router.get('/',(req,resp,next) => {
 
 
 router.post('/',(req,resp,next) => {
-
+/*
 	const prospect = new Prospect({
 		_id: new mongoose.Types.ObjectId(),
 		FName: req.body.FName,
@@ -61,7 +60,7 @@ router.post('/',(req,resp,next) => {
 		.catch(err => console.log(err));
 
 
-
+*/
 	resp.status(201).json({
 		message: 'this is posty prospects',
 		status: 'okay',
@@ -71,7 +70,7 @@ router.post('/',(req,resp,next) => {
 
 router.get('/:prospectId', (req,resp,next) => {
 	const id = req.params.prospectId;
-
+/*
 	console.log("Valid",mongoose.Types.ObjectId.isValid(id));
 	
 	Prospect.findById(id)
@@ -85,7 +84,7 @@ router.get('/:prospectId', (req,resp,next) => {
 				id:id,
 				Valid:mongoose.Types.ObjectId.isValid(id)})
 		});
-
+*/
 	// console.log("ONE")
 	// myQry = Prospect.find();
 	// console.log("TWO")
