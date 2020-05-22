@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
 // const prospectRoutes = require('./api/routes/prospects');
-// const teamRoutes = require('./api/routes/Teams');
+const teamRoutes = require('./api/routes/Teams');
 // const collegeRoutes = require('./api/routes/colleges');
 // const draftRoutes = require('./api/routes/draft');
 // const teamNeedRoutes = require('./api/routes/TeamNeeds');
@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.raw());
 app.use(bodyParser.text());
 
-app.use((req,resp,next) => {
+app.use((req, resp, next) => {
 	resp.header('Access-Control-Allow-Origin','*');
 	resp.header('Access-Control-Allow-Headers','*');
 
@@ -40,20 +40,20 @@ app.use((req,resp,next) => {
 });
 
 // app.use('/prospects',prospectRoutes);
-// app.use('/teams',teamRoutes);
+app.use('/teams',teamRoutes);
 // app.use('/colleges',collegeRoutes);
 // app.use('/draft',draftRoutes);
 // app.use('/teamNeeds',teamNeedRoutes);
 // app.use('/draftRounds',draftRoundRoutes);
 // app.use('/picks',pickRoutes);
 
-app.use((req,resp,next) => {
-	const error = new Error('NOT FOUND IDIOT');
+app.use((req, resp, next) => {
+	const error = new Error('NOT FOUND: ' + req.path);
 	error.status= 404;
 	next(error);
 })
 
-app.use((error,req,resp,next) => {
+app.use((error, req, resp, next) => {
 	resp.status(error.status || 500);
 	resp.json({
 		error: {

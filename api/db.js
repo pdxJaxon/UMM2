@@ -1,2 +1,4 @@
 const {Sequelize} = require('sequelize');
-exports.connection = new Sequelize('sqlite:UMM.db');
+const dbConn = new Sequelize('sqlite:UMM.db');
+
+exports.connection = dbConn;

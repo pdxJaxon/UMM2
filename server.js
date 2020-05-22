@@ -13,6 +13,6 @@ const port = process.env.PORT || 3000;
 
 const server = http.createServer(app);
 
-console.log(`Listening on ${port} for ${process.env.NODE_ENV}`)
+console.log(`Listening on ${port} in ${process.env.NODE_ENV}`)
 
 server.listen(port);
