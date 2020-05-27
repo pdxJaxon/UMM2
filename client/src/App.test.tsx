@@ -3,7 +3,6 @@ import { render, fireEvent } from "@testing-library/react";
 import { AppContainer, App } from "./App";
 import { useStore } from "./store";
 import { ActionType } from "./store/store";
-import { act } from "react-dom/test-utils";
 
 const seahawksEntry = {
   Abbreviation: "SEA",

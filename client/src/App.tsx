@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React from "react";
 import { StoreContextWrapper } from "./store/StoreContextWrapper";
 import { TeamSelector } from "./components";
 import { useStore } from "./store";

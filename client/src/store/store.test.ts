@@ -17,24 +17,24 @@ describe("reducer", () => {
   });
 
   test("SET_TEAMS", () => {
-    const mockTeam: Team = {
+    const titans: Team = {
       Abbreviation: "TEN",
       City: "Nashville",
       Nickname: "Titans",
     };
 
-    const expected = { ...mockStore, teams: { TEN: mockTeam } };
+    const storeWithOnlyTitans = { ...mockStore, teams: { TEN: titans } };
 
     const actual = reducer(mockStore, {
       type: ActionType.SET_TEAMS,
-      payload: { teams: [mockTeam] },
+      payload: { teams: [titans] },
     });
 
-    expect(actual).toEqual(expected);
+    expect(actual).toEqual(storeWithOnlyTitans);
   });
 
   test("SET_FAVORITE_TEAM_FOR_USER", () => {
-    const expected = {
+    const storeWithFavoriteTeam = {
       ...mockStore,
       user: { ...mockStore.user, favoriteTeam: "TEN" },
     };
@@ -44,6 +44,6 @@ describe("reducer", () => {
       payload: { team: "TEN" },
     });
 
-    expect(actual).toEqual(expected);
+    expect(actual).toEqual(storeWithFavoriteTeam);
   });
 });
