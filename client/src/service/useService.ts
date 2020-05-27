@@ -7,8 +7,13 @@ export function useService() {
   const { dispatch } = useStore();
 
   const fetchTeams = async () => {
-    const teams = await getTeamsRequest();
-    dispatch({ type: ActionType.SET_TEAMS, payload: { teams } });
+    const { data, status, error } = await getTeamsRequest();
+    if (error) {
+      console.warn(error);
+      return;
+    }
+
+    dispatch({ type: ActionType.SET_TEAMS, payload: { teams: data } });
   };
 
   return {

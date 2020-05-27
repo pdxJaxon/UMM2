@@ -10,6 +10,7 @@ export type Team = {
 type AbbreviationMappedTeams = { [key: string]: Team };
 
 export type Store = {
+  error: string | null;
   teams: AbbreviationMappedTeams;
   user: {
     favoriteTeam: string | null;
@@ -17,11 +18,16 @@ export type Store = {
 };
 
 export enum ActionType {
+  SET_ERROR = "setError",
   SET_TEAMS = "setTeams",
   SET_FAVORITE_TEAM_FOR_USER = "setFavTeamForUser",
 }
 
 export type Action =
+  | {
+      type: ActionType.SET_ERROR;
+      payload: { message: string };
+    }
   | {
       type: ActionType.SET_TEAMS;
       payload: { teams: Team[] };
@@ -32,8 +38,13 @@ export type Action =
     };
 
 export function reducer(state: Store, action: Action) {
+  console.log({ action });
   return produce(state, (draft) => {
     switch (action.type) {
+      case ActionType.SET_ERROR: {
+        draft.error = action.payload.message;
+        return;
+      }
       case ActionType.SET_TEAMS:
         const teams = action.payload.teams.reduce((acc, team) => {
           acc[team.Abbreviation] = team;
@@ -53,6 +64,7 @@ export function reducer(state: Store, action: Action) {
 }
 
 export const initialState: Store = {
+  error: null,
   teams: {},
   user: { favoriteTeam: null },
 };

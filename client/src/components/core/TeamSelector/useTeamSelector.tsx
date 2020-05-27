@@ -12,7 +12,7 @@ export function useTeamSelector() {
   } = useStore();
 
   const requestInitialData = async () => {
-    // This auto updates the store
+    // This updates the store
     await fetchTeams();
   };
 

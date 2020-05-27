@@ -46,4 +46,19 @@ describe("reducer", () => {
 
     expect(actual).toEqual(storeWithFavoriteTeam);
   });
+
+  test("SET_ERROR", () => {
+    const error = "THIS IS AN ERROR";
+    const storeWithError = {
+      ...mockStore,
+      error,
+    };
+
+    const actual = reducer(mockStore, {
+      type: ActionType.SET_ERROR,
+      payload: { message: error },
+    });
+
+    expect(actual).toEqual(storeWithError);
+  });
 });
