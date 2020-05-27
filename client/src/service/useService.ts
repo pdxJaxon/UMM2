@@ -10,6 +10,11 @@ export function useService() {
     const { data, status, error } = await getTeamsRequest();
     if (error) {
       console.warn(error);
+      dispatch({
+        type: ActionType.SET_ERROR,
+        payload: { message: error.message },
+      });
+
       return;
     }
 

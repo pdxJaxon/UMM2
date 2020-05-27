@@ -12,6 +12,7 @@ export const App: React.FC = () => {
   const { state } = useStore();
 
   const {
+    error,
     user: { favoriteTeam },
   } = state;
 
@@ -21,7 +22,8 @@ export const App: React.FC = () => {
       {favoriteTeam && (
         <div>{getTeamByAbbreviation(state)(favoriteTeam).Nickname}</div>
       )}
-      {!favoriteTeam && <TeamSelector />}
+      {!favoriteTeam && !error && <TeamSelector />}
+      {error && <div>{error}</div>}
     </div>
   );
 };

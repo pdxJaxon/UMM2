@@ -18,7 +18,6 @@ export const Select: React.FunctionComponent<SelectProps> = React.memo(
       <select
         data-testid="select"
         onChange={(evt) => {
-          console.log("called");
           onChange(evt.target.value);
         }}
       >

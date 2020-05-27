@@ -38,7 +38,14 @@ export type Action =
     };
 
 export function reducer(state: Store, action: Action) {
-  console.log({ action });
+  if (process.env.NODE_ENV === "development") {
+    /** Log the actions that are called in development only -
+     * eventually we could conditionallly exclude this from the build altogether,
+     * or use a more robust logging system that handles that for us
+     */
+    console.log({ action });
+  }
+
   return produce(state, (draft) => {
     switch (action.type) {
       case ActionType.SET_ERROR: {
