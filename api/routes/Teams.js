@@ -1,88 +1,19 @@
 const express = require('express')
 const router = express.Router();
 
-const team = require('../models/team');
+const Team = require('../models/Team');
 
-
-router.get('/',(req,resp,next) => {
-
-	team.findAll()
-		.then(teams => {
-			if(teams.length > 0){
-				console.log(teams)
-				resp.status(200).json(teams);
-			}
-			else {
-				resp.status(404).json({
-					message: "Entry Not Found"
-				})
-			}
-			
-		})
-		.catch(err => {
+router.get('/', async (req, res, next) => {
+	try {
+		teams = await Team.findAll();
+		if (teams.length > 0) {
+			return res.json(teams);
+		}
+		res.status(404).json({message: "No teams found"});
+	} catch(err) {
 			console.log(err);
-			resp.status(500).json({
-				error:err 
-		});
-
-	})
+			resp.status(500).json({message: "An unexpected error occurred"});
+	}
 });
-
-
-
-
-
-router.post('/',(req,resp,next) => {
-
-
-	resp.status(201).json({
-		message: 'this is posty team',
-		status: 'okay',
-		Team: team
-	});
-});
-
-
-
-
-
-router.get('/:teamId', (req,resp,next) => {
-	const id = req.params.teamId;
-	
-	resp.status(200).json({
-		message: "Team By ID Retrieved",
-		id: id 
-	});
-	
-})
-
-
-router.patch('/:teamId', (req,resp,next) => {
-	const id = req.params.teamId;
-	
-	resp.status(200).json({
-		message: "Team By ID Updated",
-		id: id 
-	});
-	
-})
-
-
-
-
-router.delete('/:teamId', (req,resp,next) => {
-	const id = req.params.teamId;
-	
-	resp.status(200).json({
-		message: "Team By ID Deleted",
-		id: id 
-	});
-	
-})
-
-
-
-
-
 
 module.exports = router;

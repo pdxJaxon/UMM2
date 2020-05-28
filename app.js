@@ -1,89 +1,62 @@
-
-const myPWD = process.env.DB_PWD || 'Glock%2334';
-const myHOST = process.env.DB_HOST || 'localhost';
-const myUSR = process.env.DB_USER || 'admin';
-const myDB = process.env.DB_NAME || 'UMockMe';
-const myPLATFORM = process.env.DB_PLATFORM || 'mysql';
-
 const express = require('express');
-
-const app = express();
 
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
-const sequelize = require('./db/sequelize')
-//const {Sequelize, Model, DataTypes} = require('sequelize');
+const teamRoutes = require('./api/routes/teams');
 
+const db = require('./api/db');
 
+const app = express();
 
-const prospectRoutes = require('./api/routes/prospects');
-const teamRoutes = require('./api/routes/Teams');
-const collegeRoutes = require('./api/routes/colleges');
-const draftRoutes = require('./api/routes/draft');
-const teamNeedRoutes = require('./api/routes/TeamNeeds');
-const draftRoundRoutes = require('./api/routes/DraftRounds');
-const pickRoutes = require('./api/routes/Picks');
+db.connection.authenticate().then(async () => {
+	console.log('Connection has been established successfully.');
 
+	try {
+		await db.connection.sync()
 
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
+		console.log("Synced", db.connection.getDatabaseName());
 
+		//middleware
+		app.use(morgan('dev'));
 
+		app.use(bodyParser.urlencoded({extended: false}));
+		app.use(bodyParser.json());
+		app.use(bodyParser.raw());
+		app.use(bodyParser.text());
 
+		app.use((req, resp, next) => {
+			resp.header('Access-Control-Allow-Origin','*');
+			resp.header('Access-Control-Allow-Headers','*');
 
+			if(req.method === 'OPTIONS'){
+				resp.header('Access-Control-Allow-Method','PUT, POST,PATCH,DELETE,GET');
+				return resp.status(200).json({});
+			}
+			next();
+		});
 
-//middleware
-app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
-app.use(bodyParser.raw());
-app.use(bodyParser.text());
+		app.use('/teams', teamRoutes);
 
-app.use((req,resp,next) => {
-	resp.header('Access-Control-Allow-Origin','*');
-	resp.header('Access-Control-Allow-Headers','*');
+		app.use((req, res, next) => {
+			const error = new Error('NOT FOUND: ' + req.path);
+			error.status= 404;
+			next(error);
+		})
 
-	if(req.method === 'OPTIONS'){
-		resp.header('Access-Control-Allow-Method','PUT, POST,PATCH,DELETE,GET');
-		return resp.status(200).json({});
-	}
-	next();
-
-})
-
-//define routes
-app.use('/prospects',prospectRoutes);
-app.use('/teams',teamRoutes);
-app.use('/colleges',collegeRoutes);
-app.use('/draft',draftRoutes);
-app.use('/teamNeeds',teamNeedRoutes);
-app.use('/draftRounds',draftRoundRoutes);
-app.use('/picks',pickRoutes);
-
-
-app.use((req,resp,next) => {
-	const error = new Error('NOT FOUND IDIOT');
-	error.status= 404;
-	next(error);
-
-})
-
-app.use((error,req,resp,next) => {
-	resp.status(error.status || 500);
-	resp.json({
-		error: {
-			message: error.message
-		}
-	})
+		app.use((error, req, res, next) => {
+			res.status(error.status || 500);
+			res.json({
+				error: {
+					message: error.message
+				}
+			})
+		});
+	} catch(err) {
+		console.error('Could not sync database tables:', err);
+	};
+}).catch(err => {
+  console.error('Unable to connect to the database:', err);
 });
 
 module.exports = app;
-
-
