@@ -6,7 +6,7 @@ import { useTeamSelector } from "./useTeamSelector";
 import { useService } from "../../../service";
 import { StoreContext, ActionType } from "../../../store/store";
 
-//mock the module with the spy
+// Mock the module, without implementing a replacement, this gets hoisted above `mockFetchTeams` so we can't use that here
 jest.mock("../../../service", () => ({
   useService: jest.fn(),
 }));
@@ -29,6 +29,7 @@ describe("TeamSelector", () => {
       const fakeTeam = "THIS_IS_A_TEAM";
 
       const TestComponent: React.FC = () => {
+        // Actually mock the return value while mockFetchTeams is in scope
         (useService as any).mockReturnValue({ fetchTeams: mockFetchTeams });
         const { setFavoriteTeam } = useTeamSelector();
 
