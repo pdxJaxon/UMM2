@@ -18,9 +18,9 @@ describe("reducer", () => {
 
   test("SET_TEAMS", () => {
     const titans: Team = {
-      Abbreviation: "TEN",
-      City: "Nashville",
-      Nickname: "Titans",
+      abbreviation: "TEN",
+      city: "Nashville",
+      nickname: "Titans",
     };
 
     const storeWithOnlyTitans = { ...mockStore, teams: { TEN: titans } };

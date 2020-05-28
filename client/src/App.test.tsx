@@ -5,15 +5,15 @@ import { useStore } from "./store";
 import { ActionType } from "./store/store";
 
 const seahawksEntry = {
-  Abbreviation: "SEA",
-  City: "Seattle",
-  Nickname: "Seahawks",
+  abbreviation: "SEA",
+  city: "Seattle",
+  nickname: "Seahawks",
 };
 
 const bearsEntry = {
-  Abbreviation: "CHI",
-  City: "Chicago",
-  Nickname: "Bears",
+  abbreviation: "CHI",
+  city: "Chicago",
+  nickname: "Bears",
 };
 
 const TestComponent = () => {
@@ -23,9 +23,9 @@ const TestComponent = () => {
       {Object.entries(state.teams).map(([key, value]) => {
         return (
           <div id={key} key={key} data-testid={"team"}>
-            <span>{value.Abbreviation}</span>
-            <span>{value.City}</span>
-            <span>{value.Nickname}</span>
+            <span>{value.abbreviation}</span>
+            <span>{value.city}</span>
+            <span>{value.nickname}</span>
           </div>
         );
       })}

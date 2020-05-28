@@ -20,7 +20,7 @@ export const App: React.FC = () => {
     <div className="App">
       <div>Hello uMockMe</div>
       {favoriteTeam && (
-        <div>{getTeamByAbbreviation(state)(favoriteTeam).Nickname}</div>
+        <div>{getTeamByAbbreviation(state)(favoriteTeam).nickname}</div>
       )}
       {!favoriteTeam && !error && <TeamSelector />}
       {error && <div>{error}</div>}

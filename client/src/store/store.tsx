@@ -2,9 +2,9 @@ import React, { Dispatch } from "react";
 import { produce } from "immer";
 
 export type Team = {
-  Abbreviation: string;
-  City: string;
-  Nickname: string;
+  abbreviation: string;
+  city: string;
+  nickname: string;
 };
 
 type AbbreviationMappedTeams = { [key: string]: Team };
@@ -54,7 +54,7 @@ export function reducer(state: Store, action: Action) {
       }
       case ActionType.SET_TEAMS:
         const teams = action.payload.teams.reduce((acc, team) => {
-          acc[team.Abbreviation] = team;
+          acc[team.abbreviation] = team;
           return acc;
         }, {} as AbbreviationMappedTeams);
 

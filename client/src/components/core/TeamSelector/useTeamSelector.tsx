@@ -21,9 +21,9 @@ export function useTeamSelector() {
   }, []);
 
   const teamOptions = Object.values(teams).map(
-    ({ Abbreviation, Nickname }) => ({
-      label: Nickname,
-      value: Abbreviation,
+    ({ abbreviation, nickname }) => ({
+      label: nickname,
+      value: abbreviation,
     })
   );
 
