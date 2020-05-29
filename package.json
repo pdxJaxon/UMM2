@@ -6,8 +6,7 @@
   "scripts": {
     "test": "mocha --recursive ./api/test/**/*Test.js",
     "start": "NODE_ENV=development nodemon server.js",
-    "debugTest": "mocha --recursive --inspect-brk ./api/test/**/*Test.js",
-    "start": "nodemon server.js"
+    "debugTest": "mocha --recursive --inspect-brk ./api/test/**/*Test.js"
   },
   "author": "Jaxon",
   "license": "ISC",
