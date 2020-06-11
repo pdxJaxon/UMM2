@@ -1,9 +1,10 @@
 const { Sequelize } = require('sequelize');
 const db = require('../db')
+const NFLDivision = require('NFLDivision')
 
 module.exports = db.connection.define('team',
 	{
-		id: {
+		teamId: {
 			field: 'teamId',
 			type: Sequelize.INTEGER,
 			primaryKey: true,
@@ -26,3 +27,4 @@ module.exports = db.connection.define('team',
 		freezeTableName: true
 	}
 )
+team.belongsTo(NFLDivision)

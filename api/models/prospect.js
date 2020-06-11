@@ -1,24 +1,34 @@
-const Sequelize = require('sequelize');
-/*
-const prospectSchema = Sequelize.define('prospect',{
-	_id: {type:Sequelize.INTEGER,autoincrement:true,primaryKey:true},
-	FName: Sequelize.STRING,
-	LName: Sequelize.STRING,
-	Age: Sequelize.NUMBER ,
-	College: Sequelize.STRING,
-	Position: Sequelize.STRING,
-	Height: Sequelize.STRING,
-	Weight: Sequelize.STRING,
-	Arms: Sequelize.STRING,
-	Hands: Sequelize.STRING,
-	Year: Sequelize.STRING,
-	SparqScore: Sequelize.NUMBER,
-	UMMScore: Sequelize.NUMBER,
-	NFLGrade: Sequelize.NUMBER
-});
+const { Sequelize } = require('sequelize');
+const db = require('../db')
+const Position = require('Position')
+const College = require('College')
 
+module.exports = db.connection.define('prospect',
+	{
+		id: {
+			field: 'prospectId',
+			type: Sequelize.INTEGER,
+			primaryKey: true,
+			autoincrement: true
+		},
+		firstName: {
+			field: 'fName',
+			type: Sequelize.STRING
+		},
+		lastName: {
+			field: 'lName',
+			type: Sequelize.STRING
+		},
+		Year: {
+			field: 'Year',
+			type: Sequelize.STRING
+		}
+	},
+	{
+		freezeTableName: true
+	}
+)
 
-module.exports = Sequelize.models.Prospect;
-*/
-
+prospect.HasOne(Position)
+prospect.BelongsTo(College)
 

@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive ./api/test/**/*Test.js",
-    "start": "NODE_ENV=development nodemon server.js",
-    "debugTest": "mocha --recursive --inspect-brk ./api/test/**/*Test.js",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "debugTest": "mocha --recursive --inspect-brk ./api/test/**/*Test.js"
   },
   "author": "Jaxon",
   "license": "ISC",
@@ -18,6 +17,7 @@
     "morgan": "^1.9.1",
     "mysql2": "^2.1.0",
     "sequelize": "^5.21.8",
+    "sequelize-cli": "^5.5.1",
     "sqlite3": "^4.2.0"
   },
   "devDependencies": {
