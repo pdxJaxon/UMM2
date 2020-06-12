@@ -1,6 +1,7 @@
 const { Sequelize } = require('sequelize');
 const db = require('../db')
-const NFLDivision = require('NFLDivision')
+const NFLDivision = require('../models/NFLDivision')
+const NFLConference = require('../models/NFLConference')
 
 module.exports = db.connection.define('team',
 	{
@@ -27,4 +28,7 @@ module.exports = db.connection.define('team',
 		freezeTableName: true
 	}
 )
-team.belongsTo(NFLDivision)
+NFLDivision.belongsTo(NFLConference,{
+	foreignKey:'NFLConferenceId'
+});
+

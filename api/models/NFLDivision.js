@@ -1,6 +1,6 @@
 const { Sequelize } = require('sequelize');
 const db = require('../db')
-const NFLConference = require('NFLConference')
+const NFLConference = require('../models/NFLConference')
 
 //Example: AFC North, NFC East
 module.exports = db.connection.define('NFLDivision',
@@ -21,4 +21,4 @@ module.exports = db.connection.define('NFLDivision',
 	}
 )
 
-NFLDivision.belongsTo(NFLConference)
+

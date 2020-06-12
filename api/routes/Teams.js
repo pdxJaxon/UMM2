@@ -2,6 +2,11 @@ const express = require('express')
 const router = express.Router();
 
 const Team = require('../models/Team');
+const NFLDivision = require('../models/NFLDivision');
+
+Team.belongsTo(NFLDivision,{
+	foreignKey: "NFLDivisionId"
+});
 
 router.get('/', async (req, res, next) => {
 	try {
@@ -19,7 +24,11 @@ router.get('/', async (req, res, next) => {
 
 router.get('/abbr/:abbr', async (req, res, next) => {
 	try {
-		teams = await Team.findOnde(abbreviation:abbr);
+		teams = await Team.findAll({
+			limit:1,
+			where: {abbreviation:abbr}
+			}
+			)
 		if (teams.length > 0) {
 			return res.json(teams);
 		}
@@ -33,7 +42,11 @@ router.get('/abbr/:abbr', async (req, res, next) => {
 
 router.get('/id/:id', async (req, res, next) => {
 	try {
-		teams = await Team.findOnde(id:id);
+		teams = await Team.findAll({
+			limit:1,
+			where:{TeamId:id}
+		}
+			)
 		if (teams.length > 0) {
 			return res.json(teams);
 		}
