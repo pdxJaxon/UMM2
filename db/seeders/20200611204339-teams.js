@@ -2,7 +2,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     
-      return queryInterface.bulkInsert('Teams', [{
+      return queryInterface.bulkInsert('team', [{
         abbreviation: 'PIT',
         city: 'Pittsburgh',
         nickname:'Steelers',
