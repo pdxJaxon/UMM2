@@ -5,10 +5,16 @@ module.exports = {
     
       return queryInterface.bulkInsert('NFLConference', [{
         NFLConferenceName: 'American Football Conference',
-        NFLConferenceAbbreviation: 'AFC'
+        NFLConferenceAbbreviation: 'AFC',
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       {NFLConferenceName: 'National Football Conference',
-        NFLConferenceAbbreviation: 'NFC'}], {});
+        NFLConferenceAbbreviation: 'NFC',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+        ], {});
     
   },
 

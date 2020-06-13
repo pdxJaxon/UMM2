@@ -12,7 +12,7 @@ module.exports = db.connection.define('team',
 			autoincrement: true
 		},
 		abbreviation: {
-			field: 'abbr',
+			field: 'abbreviation',
 			type: Sequelize.STRING
 		},
 		city: {
