@@ -31,6 +31,28 @@ School.associate = function(models) {
 	School.belongsTo(models.Conference)
 }
 
+schools = [
+	{abbreviation: 'UofO', name: 'University of Oregon', mascot: 'Ducks',conference:''},
+	{abbreviation: 'UofO', name: 'University of Oregon', mascot: 'Ducks',conference:''},
+	{abbreviation: 'UofO', name: 'University of Oregon', mascot: 'Ducks',conference:''},
+	{abbreviation: 'UofO', name: 'University of Oregon', mascot: 'Ducks',conference:''},
+	{abbreviation: 'UofO', name: 'University of Oregon', mascot: 'Ducks',conference:''},
+	{abbreviation: 'UofO', name: 'University of Oregon', mascot: 'Ducks',conference:''},
+	{abbreviation: 'UofO', name: 'University of Oregon', mascot: 'Ducks',conference:''},
+	{abbreviation: 'UofO', name: 'University of Oregon', mascot: 'Ducks',conference:''},
+	{abbreviation: 'UofO', name: 'University of Oregon', mascot: 'Ducks',conference:''},
+	{abbreviation: 'UofO', name: 'University of Oregon', mascot: 'Ducks',conference:''},
+	{abbreviation: 'UofO', name: 'University of Oregon', mascot: 'Ducks',conference:''},
+	
+];
+
+
+School.bulkCreate(schools,{validate:true}).then(()=>{
+	console.log('schools created')
+});
+
+
+
 module.export = School
 
 
