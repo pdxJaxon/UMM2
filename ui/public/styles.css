@@ -1,0 +1,56 @@
+* {
+	box-sizing: border-box;
+}
+
+body{
+	margin:0;
+}
+
+.header {
+	background-color: #000000;
+	padding: 20px;
+	text-align: center;
+}
+
+.topnav a {
+	float: left;
+	display: block;
+	color: f3f3f3;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+.topnav a:hover{
+	background-color: #ddd000;
+	color:black;
+}
+
+.column{
+	float: left;
+	width: 33.33%;
+	padding: 15px;
+}
+
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+@media screen and (max-width:600;px){
+	.column{
+		width: 100%;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
