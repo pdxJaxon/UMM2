@@ -7,9 +7,21 @@ body{
 }
 
 .header {
-	background-color: #000000;
+	background-color: #d2e37f;
 	padding: 20px;
 	text-align: center;
+	font-size: 32px;
+}
+
+.topnav {
+	overflow:hidden;
+	background-color: #d2e37f3;
+}
+
+ul {
+	list-style-type: none;
+	margin:0;
+	padding:0;
 }
 
 .topnav a {
