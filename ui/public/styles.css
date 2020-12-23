@@ -3,7 +3,16 @@
 }
 
 body{
-	margin:0;
+	margin:300px;
+	margin-left:300px;
+}
+
+.teamList{
+	padding:30px;
+}
+
+.prospectList{
+	padding:30px;
 }
 
 .header {
@@ -50,7 +59,7 @@ ul {
 	clear: both;
 }
 
-@media screen and (max-width:600;px){
+@media screen and (max-width:600px){
 	.column{
 		width: 100%;
 	}
