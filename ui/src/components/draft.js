@@ -1,5 +1,7 @@
 import React from 'react'
 
+import AvailableList from './availablelist'
+
 
 
 
@@ -8,10 +10,10 @@ class Draft extends React.Component {
 	
 
 	render(){
-
+	
 		return (
 			<div>
-				This is the Draft Entry Point
+				<AvailableList availableprospects={this.props.availableprospects} />
 			</div>
 		);
 	}
