@@ -1,6 +1,8 @@
 const { Sequelize } = require('sequelize');
+
 const db = require('../db');
 const position = require('position');
+const cCollege = require('College')
 
 Prospect = db.connection.define('prospect',
 	{
@@ -60,7 +62,10 @@ Prospect = db.connection.define('prospect',
 	}
 )
 
-Prospect.belongsTo(position)
+
+prospect.HasOne(position)
+prospect.BelongsTo(college)
+prospect.belongsTo(position)
 module.exports = Prospect
 
 

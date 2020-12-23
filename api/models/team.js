@@ -1,9 +1,11 @@
 const { Sequelize } = require('sequelize');
 const db = require('../db')
+const NFLDivision = require('../models/NFLDivision')
+const NFLConference = require('../models/NFLConference')
 
 Team = db.connection.define('team',
 	{
-		id: {
+		teamId: {
 			field: 'teamId',
 			type: Sequelize.INTEGER,
 			primaryKey: true,
@@ -26,7 +28,6 @@ Team = db.connection.define('team',
 		freezeTableName: true
 	}
 )
-
 
 
 teams = [
@@ -69,4 +70,5 @@ Team.bulkCreate(teams,{validate:true}).then(()=>{
 });
 
 module.exports = Team;
+
 
