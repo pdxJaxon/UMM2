@@ -1,8 +1,9 @@
 const { Sequelize } = require('sequelize');
-const db = require('../db');
-const prospect = require('prospect');
+const db = require('../db')
+const Unit = require(Unit)
 
-Position = db.connection.define('position',
+//example: Tightend - TE
+module.exports = db.connection.define('Position',
 	{
 		id: {
 			field: 'positionId',
@@ -10,23 +11,18 @@ Position = db.connection.define('position',
 			primaryKey: true,
 			autoincrement: true
 		},
-		abbreviation: {
-			field: 'abbreviation',
+		positionName: {
+			field: 'positionName',
 			type: Sequelize.STRING
 		},
-		name: {
-			field: 'name',
+		positionAbbreviation: {
+			field: 'positionAbbreviation',
 			type: Sequelize.STRING
 		}
 	},
 	{
 		freezeTableName: true
-
 	}
 )
 
-Position.hasMany(prospect,{as: 'Prospects'})
-
-module.exports = Position
-
-
+Position.belongsTo(Unit)
