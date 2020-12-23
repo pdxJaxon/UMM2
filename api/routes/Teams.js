@@ -12,8 +12,59 @@ router.get('/', async (req, res, next) => {
 		res.status(404).json({message: "No teams found"});
 	} catch(err) {
 			console.log(err);
-			resp.status(500).json({message: "An unexpected error occurred"});
+			res.status(500).json({message: "An unexpected error occurred"});
 	}
 });
+
+router.post('/', async (req, res, next) => {
+	
+	var t = new Team({
+		abbreviation:req.body.abbreviation,
+		city:req.body.city,
+		nickname:req.body.nickname
+	});
+
+	t.save(function(err,t){
+
+		res.status(201).json(t);
+
+	});
+
+	teams = await Team.findAll();
+		if (teams.length > 0) {
+			return res.json(teams);
+		}
+		
+});
+
+
+
+router.put('/', async (req, res, next) => {
+	
+	t = await Team.findOne({
+		where:{id:req.body.id}}).then(function(t){
+			t.abbreviation = req.body.abbreviation;
+			t.city = req.body.city;
+			t.nickname = req.body.nickname;
+
+			t.save(function(err,t){
+				res.status(201).json(t);
+
+			});
+
+		});
+
+	teams = await Team.findAll();
+		if (teams.length > 0) {
+			return res.json(teams);
+		}
+		
+});
+
+
+
+
+
+
 
 module.exports = router;
