@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive ./api/test/**/*Test.js",
-    "start": "nodemon server.js",
+    "start": "NODE_ENV=development nodemon server.js",
     "debugTest": "mocha --recursive --inspect-brk ./api/test/**/*Test.js"
   },
   "author": "Jaxon",
@@ -23,6 +23,6 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^7.1.2",
-    "nodemon": "^1.19.3"
+    "nodemon": "^1.19.4"
   }
 }

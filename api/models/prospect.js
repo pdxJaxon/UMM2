@@ -1,27 +1,60 @@
 const { Sequelize } = require('sequelize');
-const db = require('../db')
-const Position = require('Position')
-const College = require('College')
 
-module.exports = db.connection.define('prospect',
+const db = require('../db');
+const position = require('position');
+const cCollege = require('College')
+
+Prospect = db.connection.define('prospect',
 	{
-		id: {
+		prospectId: {
 			field: 'prospectId',
 			type: Sequelize.INTEGER,
 			primaryKey: true,
 			autoincrement: true
 		},
-		firstName: {
-			field: 'fName',
+		FName: {
+			field: 'abbreviation',
 			type: Sequelize.STRING
 		},
-		lastName: {
-			field: 'lName',
+		LName: {
+			field: 'city',
+			type: Sequelize.STRING
+		},
+		Age: {
+			field: 'nickname',
+			type: Sequelize.STRING
+		}
+		Height: {
+			field: 'Height'
+			type: Sequelize.STRING
+		},
+		Weight: {
+			field: 'Weight'
+			type: Sequelize.STRING
+		},
+		Arms: {
+			field: 'Arms'
+			type: Sequelize.STRING
+		},
+		Hands: {
+			field: 'Hands'
 			type: Sequelize.STRING
 		},
 		Year: {
-			field: 'Year',
+			field: 'Year'
 			type: Sequelize.STRING
+		},
+		SparqScore: {
+			field: 'SparqScore'
+			type: Sequelize.NUMBER
+		},
+		UMMScore: {
+			field: 'UMMScore'
+			type: Sequelize.NUMBER
+		},
+		NFLGrade: {
+			field: 'NFLGrade'
+			type: Sequelize.NUMBER
 		}
 	},
 	{
@@ -29,6 +62,11 @@ module.exports = db.connection.define('prospect',
 	}
 )
 
-prospect.HasOne(Position)
-prospect.BelongsTo(College)
+
+prospect.HasOne(position)
+prospect.BelongsTo(college)
+prospect.belongsTo(position)
+module.exports = Prospect
+
+
 

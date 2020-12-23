@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
 const teamRoutes = require('./api/routes/teams');
+const conferenceRoutes = require('./api/routes/conferences');
 
 const db = require('./api/db');
 
@@ -36,8 +37,19 @@ db.connection.authenticate().then(async () => {
 			next();
 		});
 
+		//routes
 		app.use('/teams', teamRoutes);
+		app.use('/conferences', conferenceRoutes);
+		
 
+
+		//root
+		app.use('/',(req,res,next) => {
+			res.send("goody");
+		})
+
+
+		//unknown route
 		app.use((req, res, next) => {
 			const error = new Error('NOT FOUND: ' + req.path);
 			error.status= 404;
