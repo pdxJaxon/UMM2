@@ -21,10 +21,20 @@ class App extends React.Component {
 
 		return(
 			<div>
-			<h1>Teams</h1>
-			<TeamList teams={this.state.data}/>
-			<h1>Prospects</h1>
-			<ProspectList prospects={this.state.prospects}/>
+				<div className="header">You Mock Me</div>
+				<div className="topnav">
+					<ul>
+						<li><a href="http://www.nfl.com">menu 1</a></li>
+						<li><a href="http://www.nfl.com">menu 1</a></li>
+						<li><a href="http://www.nfl.com">menu 1</a></li>
+						<li><a href="http://www.nfl.com">menu 1</a></li>
+						<li><a href="http://www.nfl.com">menu 1</a></li>
+					</ul>
+				</div>
+				<h1>Teams</h1>
+				<TeamList teams={this.state.data}/>
+				<h1>Prospects</h1>
+				<ProspectList prospects={this.state.prospects}/>
 			</div>
 		)
 

@@ -1,0 +1,77 @@
+* {
+	box-sizing: border-box;
+}
+
+body{
+	margin:300px;
+	margin-left:300px;
+}
+
+.teamList{
+	padding:30px;
+}
+
+.prospectList{
+	padding:30px;
+}
+
+.header {
+	background-color: #d2e37f;
+	padding: 20px;
+	text-align: center;
+	font-size: 32px;
+}
+
+.topnav {
+	overflow:hidden;
+	background-color: #d2e37f3;
+}
+
+ul {
+	list-style-type: none;
+	margin:0;
+	padding:0;
+}
+
+.topnav a {
+	float: left;
+	display: block;
+	color: f3f3f3;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+.topnav a:hover{
+	background-color: #ddd000;
+	color:black;
+}
+
+.column{
+	float: left;
+	width: 33.33%;
+	padding: 15px;
+}
+
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+@media screen and (max-width:600px){
+	.column{
+		width: 100%;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
