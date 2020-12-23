@@ -6,7 +6,7 @@ class TeamItem extends React.Component {
 		let selection = event.target.href;
 		let endWack = selection.lastIndexOf('/');
 		let theTeam = selection.substring(endWack+1,selection.length)
-		event.preventDefault();
+		//event.preventDefault();
 		
 		console.log(theTeam);
 
@@ -17,7 +17,7 @@ class TeamItem extends React.Component {
 
 		return (
 			<div>
-			<a onClick={this.doStuff.bind(this)} key={this.props.team.abbreviation} href={this.props.team.abbreviation}>{this.props.team.city + ' ' + this.props.team.nickname}</a>
+			<a onClick={this.doStuff.bind(this)} key={this.props.team.abbreviation} href={'/draft/' + this.props.team.abbreviation}>{this.props.team.city + ' ' + this.props.team.nickname}</a>
 			</div>
 		);
 	}
