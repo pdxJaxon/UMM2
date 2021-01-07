@@ -2,19 +2,31 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+
+import {BrowserRouter,Route} from 'react-router-dom';
+
 import TeamList from './components/teamlist'
 import ProspectList from './components/prospectlist'
+import Draft from './components/draft'
+import Picks from './components/picks'
+
 
 import JSON from './teams.json'
 import Prospects from './prospects.json'
+import AvailableProspects from './prospects.json'
+import thePicks from './picks.json'
 
 
 
 class App extends React.Component {
 
+	
+
 	state={
 		data:JSON,
-		prospects:Prospects
+		picks:thePicks,
+		prospects:Prospects,
+		available:AvailableProspects
 	}
 
 	render(){
@@ -31,10 +43,12 @@ class App extends React.Component {
 						<li><a href="http://www.nfl.com">menu 1</a></li>
 					</ul>
 				</div>
-				<h1>Teams</h1>
-				<TeamList teams={this.state.data}/>
-				<h1>Prospects</h1>
-				<ProspectList prospects={this.state.prospects}/>
+				<BrowserRouter>
+					<Route path="/picks" render={(routeProps) => <Picks picks={this.state.picks} /> } />
+					<Route path="/teams" render={(routeProps) => <TeamList teams={this.state.data} /> } />
+					<Route path="/prospects" render={(routeProps) => <ProspectList prospects={this.state.prospects} /> } />
+					<Route path="/draft" render={(routeProps) => <Draft availableprospects={this.state.prospects} /> } />
+				</BrowserRouter>
 			</div>
 		)
 

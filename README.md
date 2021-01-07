@@ -2,6 +2,13 @@
 
 Description pending
 
+TO Start the Server:
+From UMM2 Root: NODE_ENV=DEV node server
+
+FROM ui: yarn start
+
+
+
 ### Config
 UMockMe uses [dotenv]: <https://www.npmjs.com/package/dotenv>
 for configuration. This allows using standard environment variables within

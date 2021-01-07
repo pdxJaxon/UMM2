@@ -56,7 +56,8 @@ router.get('/id/:id', async (req, res, next) => {
 			console.log(err);
 			resp.status(500).json({message: "An unexpected error occurred"});
 	}
-=======
+});
+
 router.post('/', async (req, res, next) => {
 	
 	var t = new Team({
@@ -103,6 +104,10 @@ router.put('/', async (req, res, next) => {
 
 });
 
-
-
 module.exports = router;
+
+
+
+
+
+
