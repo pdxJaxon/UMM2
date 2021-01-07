@@ -1,33 +1,70 @@
 const express = require('express')
 const router = express.Router();
 
+const Pick = require('./models/pick');
+const Team = require('./models/team');
+
+
+
+
+function getPickByPickId(pickId){
+	//get the pick for the id that was passed in
+	var pick = await Pick.findAll({
+		where: {
+			PickId: PickId
+		}
+	});
+
+	return pick;
+}
+
+
+
+
 
 function getTeamForPick(Pickid){
-	GetPick()
 
-	Get TeamByID()
+
+
+	//get the pick for the id that was passed in
+	var pick getPickByPickId(PickId);
+
+	//for this pick in the draft, lets get the team who is picking
+	var team = await Team.findAll({
+		where: {
+			teamId: pick.teamId
+		}
+	});
 	
-	return Team;
+	return team;
 }
+
+
+
 
 
 //this is the primary engine logic for each actual pick of the draft.
 function MakePick(PickId){
 
+	//lets find out who's pick it is
 	var Team = getTeamForPick();
 
-	//get team needs
-	var teamNeeds = []
+	//get team needs for this team....
+	var teamNeeds = Team.getTeamNeeds();
+
 
 	//get available prospects
 	var availableProspects = []
 
+
 	//Keep track of potential candidates for this team
 	var PotentialPicks = []
 
+
 	for(const n in TeamNeeds){
+
 		//get max reach for this position of need and this round
-		var maxReach = GetMaxReach(TeamId,NeedId,RoundId)
+		var maxReach = getMaxReach(TeamId,NeedId,RoundId)
 
 		//check to see if there is a player available within max reach
 
@@ -50,6 +87,31 @@ function MakePick(PickId){
 
 }
 
+function getMaxReach(TeamId,NeedId,RoundId){
+	var maxReach = 0;
+
+	switch(RoundId){
+		case 1:
+			maxReach = 15;
+			break;
+		case 2:
+			maxReach = 20;
+			break;
+		case 3:
+		case 4:
+			maxreach = 25;
+			break;
+		case 5:
+		case 6:
+			maxReach = 35;
+			break
+		default:
+			maxReach = 300;
+	}
+
+	return maxReach;
+}
+
 
 
 
@@ -58,15 +120,11 @@ router.get('/',(req,resp,next) => {
 		message: 'this is get picks',
 		status: 'ok'
 	})
+
+	return await Pick.findAll();
 });
 
 
-router.post('/',(req,resp,next) => {
-	resp.status(201).json({
-		message: 'this is post picks',
-		status: 'ok'
-	})
-});
 
 router.get('/:pickId', (req,resp,next) => {
 	const id = req.params.pickId;
@@ -78,10 +136,23 @@ router.get('/:pickId', (req,resp,next) => {
 	
 })
 
-
+//This is the entry point for a new pick
 router.patch('/:pickId', (req,resp,next) => {
 	const id = req.params.pickId;
 	
+	//get the pick
+	var pick = getPickByPickId(id);
+
+	//go figure out who is going to be picked
+	var ProspectId = MakePick(id);
+
+
+
+	//SET New ProspectId in the model
+	pick.prospectId = ProspectId;
+	await pick.save();
+
+
 	resp.status(200).json({
 		message: "pick By ID Updated",
 		id: id 
@@ -91,16 +162,6 @@ router.patch('/:pickId', (req,resp,next) => {
 
 
 
-
-router.delete('/:pickId', (req,resp,next) => {
-	const id = req.params.pickId;
-	
-	resp.status(200).json({
-		message: "pick By ID Deleted",
-		id: id 
-	});
-	
-})
 
 
 

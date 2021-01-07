@@ -8,18 +8,23 @@ import {BrowserRouter,Route} from 'react-router-dom';
 import TeamList from './components/teamlist'
 import ProspectList from './components/prospectlist'
 import Draft from './components/draft'
+import Picks from './components/picks'
 
 
 import JSON from './teams.json'
 import Prospects from './prospects.json'
 import AvailableProspects from './prospects.json'
+import thePicks from './picks.json'
 
 
 
 class App extends React.Component {
 
+	
+
 	state={
 		data:JSON,
+		picks:thePicks,
 		prospects:Prospects,
 		available:AvailableProspects
 	}
@@ -39,6 +44,7 @@ class App extends React.Component {
 					</ul>
 				</div>
 				<BrowserRouter>
+					<Route path="/picks" render={(routeProps) => <Picks picks={this.state.picks} /> } />
 					<Route path="/teams" render={(routeProps) => <TeamList teams={this.state.data} /> } />
 					<Route path="/prospects" render={(routeProps) => <ProspectList prospects={this.state.prospects} /> } />
 					<Route path="/draft" render={(routeProps) => <Draft availableprospects={this.state.prospects} /> } />
