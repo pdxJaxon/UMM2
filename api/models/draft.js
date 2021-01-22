@@ -1,6 +1,8 @@
 const { Sequelize } = require('sequelize');
 const db = require('../db');
 
+//Each Session will have its own DRAFT
+//If a DRAFT Record has no sessionID, it is assumed our "Primary"
 Draft = db.connection.define('draft',
 	{
 		draftId: {
@@ -17,7 +19,7 @@ Draft = db.connection.define('draft',
 
 
 drafts = [
-	{draftId: 1}
+	{draftId: 2021}
 ];
 
 Draft.bulkCreate(drafts,{validate:true}).then(()=>{
