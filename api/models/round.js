@@ -40,7 +40,6 @@ Round.bulkCreate(rounds,{validate:true}).then(()=>{
 	console.log('rounds created')
 });
 
-Round.HasOne(Draft);
 
 module.exports = Round;
 

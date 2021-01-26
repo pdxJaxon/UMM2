@@ -31,8 +31,7 @@ TeamNeed = db.connection.define('teamNeed',
 	}
 )
 
-TeamNeed.hasOne(Team)
-TeamNeed.hasOne(Position)
+
 
 needs = [
 	{teamId: 1, positionId: 1, needScore: 50},

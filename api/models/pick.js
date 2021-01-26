@@ -22,7 +22,7 @@ Pick = db.connection.define('pick',
 		},
 		teamId: {
 			field: 'teamId',
-			type: Sequelize.INTEGER
+			type: Sequelize.STRING
 		}
 	},
 	{
@@ -33,8 +33,8 @@ Pick = db.connection.define('pick',
 
 picks = [
 	{pickId:1, roundId: 1, pickNumber:1, teamId:'JAX'},
-	{pickId:2, roundId: 1, pickNumber:2,, teamId:'NYJ'},
-	{pickId:3, roundId: 1, pickNumber:3 teamId:'CIN'},
+	{pickId:2, roundId: 1, pickNumber:2, teamId:'NYJ'},
+	{pickId:3, roundId: 1, pickNumber:3, teamId:'CIN'},
 	{pickId:4, roundId: 1, pickNumber:4, teamId:'ATL'},
 	{pickId:5, roundId: 1, pickNumber:5, teamId:'CAR'},
 	{pickId:6, roundId: 1, pickNumber:6, teamId:'MIA'},

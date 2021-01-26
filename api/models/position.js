@@ -3,7 +3,7 @@ const db = require('../db')
 
 
 //example: Tightend - TE
-module.exports = db.connection.define('Position',
+Position = db.connection.define('Position',
 	{
 		positionId: {
 			field: 'positionId',
