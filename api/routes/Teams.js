@@ -2,11 +2,9 @@ const express = require('express')
 const router = express.Router();
 
 const Team = require('../models/team');
-const NFLDivision = require('../models/nfldivision');
 
-Team.belongsTo(NFLDivision,{
-	foreignKey: "NFLDivisionId"
-});
+
+
 
 router.get('/', async (req, res, next) => {
 	try {
@@ -14,7 +12,7 @@ router.get('/', async (req, res, next) => {
 		if (teams.length > 0) {
 			return res.json(teams);
 		}
-		res.status(404).json({message: "No teams found"});
+		res.status(404).json({message: "No damn teams found"});
 	} catch(err) {
 			console.log(err);
 			res.status(500).json({message: "An unexpected error occurred"});

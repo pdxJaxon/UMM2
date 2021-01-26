@@ -18,7 +18,7 @@
 	{"abbreviation": "BUF", "city":"Buffalo", "nickname": "Bills"},
 	{"abbreviation": "MIA", "city":"Miami", "nickname": "Dolphins"},
 	{"abbreviation": "NE", "city":"New England", "nickname": "Patriots"},
-	{"abbreviation": "NY", "city":"New York", "nickname": "Jets"},
+	{"abbreviation": "NYJ", "city":"New York", "nickname": "Jets"},
 	{"abbreviation": "IND", "city":"Indianapolis", "nickname": "Colts"},
 	{"abbreviation": "TEN", "city":"Tennessee", "nickname": "Titans"},
 	{"abbreviation": "HOU", "city":"Houston", "nickname": "Texans"},

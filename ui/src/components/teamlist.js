@@ -1,4 +1,5 @@
 import React from 'react'
+import {withRouter} from 'react-router-dom';
 
 import TeamItem from './teamitem'
 
@@ -13,8 +14,9 @@ class TeamList extends React.Component {
 
 		return (
 			<div className="teamList">
+			<h1>Select The Team You Wish To Draft For</h1>
 				{this.props.teams.map((theTeam)=>(
-					<TeamItem key={theTeam.abbreviation} team={theTeam} />
+					<TeamItem key={theTeam.abbreviation} history={this.props.history} team={theTeam} />
 				))}
 			</div>
 			
@@ -24,4 +26,4 @@ class TeamList extends React.Component {
 
 }
 
-export default TeamList;
+export default withRouter(TeamList);

@@ -1,9 +1,7 @@
 const express = require('express')
 const router = express.Router();
 
-const Pick = require('../models/pick');
-const Team = require('../models/team');
-
+const Mock = require('./models/mock');
 
 
 
@@ -11,7 +9,7 @@ const Team = require('../models/team');
 
 function getPickByPickId(pickId){
 	//get the pick for the id that was passed in
-	var pick = Pick.findAll({
+	var pick = await Pick.findAll({
 		where: {
 			PickId: PickId
 		}
@@ -29,10 +27,10 @@ function getTeamForPick(Pickid){
 
 
 	//get the pick for the id that was passed in
-	var pick = getPickByPickId(PickId);
+	var pick getPickByPickId(PickId);
 
 	//for this pick in the draft, lets get the team who is picking
-	var team = Team.findAll({
+	var team = await Team.findAll({
 		where: {
 			teamId: pick.teamId
 		}
@@ -117,18 +115,13 @@ function getMaxReach(TeamId,NeedId,RoundId){
 
 
 
-
 router.get('/',(req,resp,next) => {
-	try {
-		picks = Pick.findAll();
-		if (picks.length > 0) {
-			return res.json(picks);
-		}
-		res.status(404).json({message: "No picks found"});
-	} catch(err) {
-			console.log(err);
-			res.status(500).json({message: "An unexpected error occurred"});
-	}
+	resp.status(200).json({
+		message: 'this is get picks',
+		status: 'ok'
+	})
+
+	return await Pick.findAll();
 });
 
 
@@ -157,7 +150,7 @@ router.patch('/:pickId', (req,resp,next) => {
 
 	//SET New ProspectId in the model
 	pick.prospectId = ProspectId;
-	 pick.save();
+	await pick.save();
 
 
 	resp.status(200).json({
@@ -166,11 +159,6 @@ router.patch('/:pickId', (req,resp,next) => {
 	});
 	
 })
-
-
-
-
-
 
 
 

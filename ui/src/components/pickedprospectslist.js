@@ -12,7 +12,7 @@ class ProspectList extends React.Component {
 		
 		return (
 			<div className="prospectList">
-				Prospects
+				Already Selected Prospects
 			</div>
 		);
 	}

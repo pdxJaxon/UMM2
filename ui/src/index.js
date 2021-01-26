@@ -3,31 +3,43 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-import {BrowserRouter,Route} from 'react-router-dom';
+import {BrowserRouter,Route, withRouter} from 'react-router-dom';
+import {Router, browserHistory} from 'react-router';
 
+
+//OUR COMPONENTS
 import TeamList from './components/teamlist'
 import ProspectList from './components/prospectlist'
 import Draft from './components/draft'
 import Picks from './components/picks'
 
 
-import JSON from './teams.json'
+//DATA LINKS
+import Teams from './teams.json'
 import Prospects from './prospects.json'
 import AvailableProspects from './prospects.json'
 import thePicks from './picks.json'
+import TeamNeeds from './needs.json'
 
 
 
 class App extends React.Component {
 
 	
+	 	
 
 	state={
-		data:JSON,
+		data:Teams,
 		picks:thePicks,
 		prospects:Prospects,
-		available:AvailableProspects
+		available:AvailableProspects,
+		teamNeeds:TeamNeeds
 	}
+
+	
+
+	
+
 
 	render(){
 
@@ -47,7 +59,7 @@ class App extends React.Component {
 					<Route path="/picks" render={(routeProps) => <Picks picks={this.state.picks} /> } />
 					<Route path="/teams" render={(routeProps) => <TeamList teams={this.state.data} /> } />
 					<Route path="/prospects" render={(routeProps) => <ProspectList prospects={this.state.prospects} /> } />
-					<Route path="/draft" render={(routeProps) => <Draft availableprospects={this.state.prospects} /> } />
+					<Route path="/draft" render={(routeProps) => <Draft picks={this.state.picks} availableprospects={this.state.prospects} teamNeeds={this.state.teamNeeds} /> } />
 				</BrowserRouter>
 			</div>
 		)

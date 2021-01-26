@@ -5,8 +5,12 @@ const bodyParser = require('body-parser');
 
 const teamRoutes = require('./api/routes/teams');
 const conferenceRoutes = require('./api/routes/conferences');
+const prospectRoutes = require('./api/routes/prospects');
+const pickRoutes = require('./api/routes/Picks');
+
 
 const db = require('./api/db');
+const Seed = require('./db/seeders/index');
 
 const app = express();
 
@@ -14,7 +18,10 @@ db.connection.authenticate().then(async () => {
 	console.log('Connection has been established successfully.');
 
 	try {
-		await db.connection.sync()
+		await db.connection.sync({force:true}).then(() => {
+			return Seed();
+			});
+		
 
 		console.log("Synced", db.connection.getDatabaseName());
 
@@ -40,6 +47,8 @@ db.connection.authenticate().then(async () => {
 		//routes
 		app.use('/teams', teamRoutes);
 		app.use('/conferences', conferenceRoutes);
+		app.use('/prospects', prospectRoutes);
+		app.use('/Picks', pickRoutes);
 		
 
 
