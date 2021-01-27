@@ -8,9 +8,9 @@ module.exports = function() {
 	return Promise.all([
 			//independent self standing seeds
 			TeamSeed(),
-			//ProspectSeed(),
-			//DraftSeed(),
-			//PickSeed()
+			ProspectSeed(),
+			DraftSeed(),
+			PickSeed()
 		]).then(() => {
 			//seeds that depend on FKs from above seeds
 		}).then(() => {

@@ -8,8 +8,6 @@ import TeamNeeds from './teamneedslist'
 
 
 
-
-
 class Draft extends React.Component {
 
 	constructor(props){
@@ -33,10 +31,13 @@ class Draft extends React.Component {
 			.then(res => res.json())
 			.then(
 				(result) => {
-					console.log("Got Back:" + result);
+					console.log("Got Back:" + result[0].fname);
+					console.log("Also go:" + result[1].fname);
+					
+
 					this.setState({
 						isLoaded:true,
-						AvailableProspects:result.prospects
+						AvailableProspects:result
 					});
 				},
 			(err) => {
@@ -71,8 +72,7 @@ class Draft extends React.Component {
 							<AvailableList availableprospects={this.state.AvailableProspects} />
 						</td>
 						<td width="50%" align="right" valign="top">
-							<TeamNeeds needs={this.props.teamNeeds} />
-							<PickedList picks={this.props.picks} />
+							&nbsp;
 						</td>
 					</tr>
 					</tbody>
