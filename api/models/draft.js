@@ -18,15 +18,6 @@ Draft = db.connection.define('draft',
 )
 
 
-drafts = [
-	{draftId: 2021}
-];
-
-Draft.bulkCreate(drafts,{validate:true}).then(()=>{
-	console.log('drafts created')
-});
-
-
 
 module.exports = Draft;
 

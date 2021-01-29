@@ -23,12 +23,9 @@ class TeamItem extends Component {
 		
 			console.log(theTeam);
 
-			let url = "/draft/" + theTeam
-
-		
+			let url = "/draft/:" + theTeam
 
 			this.props.history.push(url);
-
 
 		};
 

@@ -7,6 +7,7 @@ const teamRoutes = require('./api/routes/teams');
 const conferenceRoutes = require('./api/routes/conferences');
 const prospectRoutes = require('./api/routes/prospects');
 const pickRoutes = require('./api/routes/Picks');
+const needRoutes = require('./api/routes/TeamNeeds');
 
 
 const db = require('./api/db');
@@ -49,6 +50,7 @@ db.connection.authenticate().then(async () => {
 		app.use('/conferences', conferenceRoutes);
 		app.use('/prospects', prospectRoutes);
 		app.use('/Picks', pickRoutes);
+		app.use('/TeamNeeds', needRoutes);
 		
 
 
