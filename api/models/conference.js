@@ -23,9 +23,7 @@ Conference = db.connection.define('conference',
 	}
 )
 
-Conference.associate = function(models) {
-	Conference.hasMany(models.School)
-}
+
 
 conferences = [
 	{abbreviation: 'American', name: 'American Atheletic Conference'},
@@ -41,7 +39,7 @@ conferences = [
 	{abbreviation: 'Sunbelt', name: 'Sunbelt Conference'},
 ];
 
-Conference.bulkCreate(conferences,{validate:true}).then(()=>{
+Conference.bulkCreate(conferences,{validate:false}).then(()=>{
 	console.log('conferences created')
 });
 
