@@ -24,14 +24,7 @@ class AvailableList extends React.Component {
 
 
 
-	componentDidMount() {
-		
-		this.setState({
-			isLoaded:true,
-			AvailableProspects: this.props.availableprospects
-		});
-				
-	}
+	
 	
 
 	render(){

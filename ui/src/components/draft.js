@@ -42,7 +42,7 @@ class Draft extends React.Component {
 			.then(res => res.json())
 			.then(
 				(result) => {
-					
+					console.log("prospects:" + result)
 					this.setState({
 						isLoaded:true,
 						AvailableProspects:result
@@ -59,11 +59,11 @@ class Draft extends React.Component {
 
 
 		//get favorite teams needs
-		fetch("http://localhost:3000/TeamNeeds/:" + theTeam)
+		fetch("http://localhost:3000/TeamNeeds/" + theTeam)
 			.then(res => res.json())
 			.then(
 				(result) => {
-					console.log("Needs:" + result[0].positionId)
+					console.log("Needs:" + result)
 					this.setState({
 						isLoaded:true,
 						Needs:result
