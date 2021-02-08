@@ -7,6 +7,24 @@ import AvailableItem from './availableitem'
 
 
 class AvailableList extends React.Component {
+
+	constructor(props){
+		super(props);
+
+		this.state = {
+			isLoaded: false,
+			AvailableProspects: [],
+			Picks: [],
+			Needs: [],
+			err: null
+		}
+
+		
+	}
+
+
+
+	
 	
 
 	render(){

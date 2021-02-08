@@ -24,4 +24,4 @@ module.exports = db.connection.define('College',
 	}
 )
 
-College.belongsTo(CollegeConference)
+

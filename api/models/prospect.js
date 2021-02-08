@@ -1,8 +1,8 @@
 const { Sequelize } = require('sequelize');
 
 const db = require('../db');
-const position = require('position');
-const cCollege = require('College')
+const position = require('../models/position');
+
 
 Prospect = db.connection.define('prospect',
 	{
@@ -10,51 +10,35 @@ Prospect = db.connection.define('prospect',
 			field: 'prospectId',
 			type: Sequelize.INTEGER,
 			primaryKey: true,
-			autoincrement: true
+			autoincrement: false
 		},
-		FName: {
-			field: 'abbreviation',
+		fname: {
+			field: 'FName',
 			type: Sequelize.STRING
 		},
-		LName: {
-			field: 'city',
+		lname: {
+			field: 'LName',
 			type: Sequelize.STRING
 		},
-		Age: {
-			field: 'nickname',
-			type: Sequelize.STRING
-		}
-		Height: {
-			field: 'Height'
+		height: {
+			field: 'Height',
 			type: Sequelize.STRING
 		},
-		Weight: {
-			field: 'Weight'
+		weight: {
+			field: 'Weight',
 			type: Sequelize.STRING
 		},
-		Arms: {
-			field: 'Arms'
+		positionId: {
+			field: 'PositionId',
+			type: Sequelize.INTEGER
+		},
+		year: {
+			field: 'Year',
 			type: Sequelize.STRING
 		},
-		Hands: {
-			field: 'Hands'
-			type: Sequelize.STRING
-		},
-		Year: {
-			field: 'Year'
-			type: Sequelize.STRING
-		},
-		SparqScore: {
-			field: 'SparqScore'
-			type: Sequelize.NUMBER
-		},
-		UMMScore: {
-			field: 'UMMScore'
-			type: Sequelize.NUMBER
-		},
-		NFLGrade: {
-			field: 'NFLGrade'
-			type: Sequelize.NUMBER
+		schoolId: {
+			field: 'SchoolId',
+			type: Sequelize.INTEGER
 		}
 	},
 	{
@@ -63,9 +47,14 @@ Prospect = db.connection.define('prospect',
 )
 
 
-prospect.HasOne(position)
-prospect.BelongsTo(college)
-prospect.belongsTo(position)
+
+
+
+console.log('prospects created')
+
+
+
+
 module.exports = Prospect
 
 

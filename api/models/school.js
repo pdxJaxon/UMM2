@@ -7,7 +7,7 @@ School = db.connection.define('school',
 			field: 'schoolId',
 			type: Sequelize.INTEGER,
 			primaryKey: true,
-			autoincrement: true
+			autoincrement: false
 		},
 		abbreviation: {
 			field: 'abbreviation',
@@ -27,9 +27,7 @@ School = db.connection.define('school',
 	}
 )
 
-School.associate = function(models) {
-	School.belongsTo(models.Conference)
-}
+
 
 schools = [
 	{abbreviation: 'UofO', name: 'University of Oregon', mascot: 'Ducks',conference:''},
