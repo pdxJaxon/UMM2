@@ -14,11 +14,21 @@ TeamNeed = db.connection.define('teamNeed',
 		},
 		teamId: {
 			field: 'teamId',
-			type: Sequelize.INTEGER
+			type: Sequelize.INTEGER,
+			allowNull: false,
+			references: {
+				Model: 'Team',
+				Key: 'teamId'
+			}
 		},
 		positionId: {
 			field: 'positionId',
-			type: Sequelize.INTEGER
+			type: Sequelize.STRING,
+			allowNull: false,
+			references: {
+				Model: 'Position',
+				Key: 'abbreviation'
+			}
 		},
 		needScore: {
 			field: 'needScore',

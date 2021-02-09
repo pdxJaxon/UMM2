@@ -14,7 +14,12 @@ Round = db.connection.define('round',
 		},
 		draftId: {
 			field: 'draftId',
-			type: Sequelize.INTEGER
+			type: Sequelize.INTEGER,
+			allowNull: false,
+			references: {
+				model: 'Draft',
+				key: 'draftId'
+			}
 		}
 	},
 	{
@@ -23,22 +28,6 @@ Round = db.connection.define('round',
 )
 
 
-
-rounds = [
-	{roundId: 1, draftId: 1},
-	{roundId: 2, draftId: 1},
-	{roundId: 3, draftId: 1},
-	{roundId: 4, draftId: 1},
-	{roundId: 5, draftId: 1},
-	{roundId: 6, draftId: 1},
-	{roundId: 7, draftId: 1}
-	
-	
-];
-
-Round.bulkCreate(rounds,{validate:true}).then(()=>{
-	console.log('rounds created')
-});
 
 
 module.exports = Round;

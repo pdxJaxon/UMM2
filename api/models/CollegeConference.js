@@ -4,7 +4,7 @@ const db = require('../db')
 //Example: Pac-12, BigSky, SEC, etc
 module.exports = db.connection.define('collegeConference',
 	{
-		id: {
+		collegeConferenceId: {
 			field: 'collegeConferenceId',
 			type: Sequelize.INTEGER,
 			primaryKey: true,
