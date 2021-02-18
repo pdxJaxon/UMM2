@@ -2,9 +2,10 @@ const { Sequelize } = require('sequelize');
 const db = require('../db')
 
 
+
 Team = db.connection.define('team',
 	{
-		teamId: {
+		Id: {
 			field: 'teamId',
 			type: Sequelize.INTEGER,
 			primaryKey: true,
@@ -27,6 +28,15 @@ Team = db.connection.define('team',
 		freezeTableName: true
 	}
 )
+
+
+Team.associate = function(models){
+	Team.hasMany(models.TeamNeed);
+}
+
+Team.associate = function(models){
+	Team.hasMany(models.Pick);
+}
 
 
 

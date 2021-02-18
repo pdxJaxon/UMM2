@@ -4,8 +4,8 @@ const db = require('../db')
 //Example: American Football Conference AFC
 module.exports = db.connection.define('NFLConference',
 	{
-		NFLConferenceId: {
-			field: 'NFLConferenceId',
+		Id: {
+			field: 'Id',
 			type: Sequelize.INTEGER,
 			primaryKey: true,
 			autoincrement: true

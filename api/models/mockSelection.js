@@ -4,8 +4,8 @@ const db = require('../db');
 
 MockSelection = db.connection.define('mockSelection',
 	{
-		mockId: {
-			field: 'mockId',
+		Id: {
+			field: 'Id',
 			type: Sequelize.INTEGER,
 			primaryKey: true,
 			autoincrement: true

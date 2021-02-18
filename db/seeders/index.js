@@ -13,14 +13,15 @@ module.exports = function() {
 	return Promise.all([
 			//independent self standing seeds
 			TeamSeed(),
-			TeamNeedSeed(),
-			ProspectSeed(),
-			DraftSeed(),
-			PickSeed(),
-			PositionSeed()
+			PositionSeed(),
+			DraftSeed()
 		]).then(() => {
 			//seeds that depend on FKs from above seeds
-			RoundSeed()
+			RoundSeed(),
+			TeamNeedSeed(),
+			ProspectSeed()
+		}).then(() => {
+			PickSeed()
 		}).then(() => {
 			console.log('All Seed Files Successfully Executed...')
 		});

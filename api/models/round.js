@@ -6,20 +6,11 @@ const Draft = require('../models/draft');
 
 Round = db.connection.define('round',
 	{
-		roundId: {
+		Id: {
 			field: 'roundId',
 			type: Sequelize.INTEGER,
 			primaryKey: true,
 			autoincrement: false
-		},
-		draftId: {
-			field: 'draftId',
-			type: Sequelize.INTEGER,
-			allowNull: false,
-			references: {
-				model: 'Draft',
-				key: 'draftId'
-			}
 		}
 	},
 	{
@@ -27,7 +18,9 @@ Round = db.connection.define('round',
 	}
 )
 
-
+Round.associate = function(models){
+	Round.belongsTo(models.Draft);
+}
 
 
 module.exports = Round;

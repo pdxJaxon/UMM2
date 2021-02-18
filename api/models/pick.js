@@ -1,28 +1,18 @@
 const { Sequelize } = require('sequelize');
 const db = require('../db');
-const Prospect = require('../models/prospect');
-const Team = require('../models/team');
-const Round = require('../models/round');
+
 
 Pick = db.connection.define('pick',
 	{
-		pickId: {
+		Id: {
 			field: 'pickId',
 			type: Sequelize.INTEGER,
 			primaryKey: true,
 			autoincrement: false
 		},
-		roundId: {
-			field: 'roundId',
-			type: Sequelize.INTEGER
-		},
 		pickNumber: {
 			field: 'pickNumber',
 			type: Sequelize.INTEGER
-		},
-		teamId: {
-			field: 'teamId',
-			type: Sequelize.STRING
 		}
 	},
 	{
@@ -32,7 +22,13 @@ Pick = db.connection.define('pick',
 
 
 
-console.log('picks created')
+Pick.associate = function(models){
+	Team.belongsTo(models.Team);
+}
+
+Pick.associate = function(models){
+	Team.belongsTo(models.Round);
+}
 
 
 module.exports = Pick;

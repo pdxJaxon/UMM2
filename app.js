@@ -8,6 +8,11 @@ const conferenceRoutes = require('./api/routes/conferences');
 const prospectRoutes = require('./api/routes/prospects');
 const pickRoutes = require('./api/routes/Picks');
 const needRoutes = require('./api/routes/TeamNeeds');
+const draftRoutes = require('./api/routes/draft');
+const roundRoutes = require('./api/routes/DraftRounds');
+const positionRoutes = require('./api/routes/position');
+
+
 
 
 const db = require('./api/db');
@@ -15,16 +20,50 @@ const Seed = require('./db/seeders/index');
 
 const app = express();
 
+
+function dropConstraints(database) {
+    //this is a hack for dev only!
+    //todo: check status of posted github issue, https://github.com/sequelize/sequelize/issues/7606
+    const queryInterface = database.getQueryInterface();
+    return queryInterface.showAllTables()
+    .then(tableNames => {
+
+        return Promise.all(tableNames.map(tableName => {
+        	console.log("ZAP " + tableName)
+            return queryInterface.showConstraint(tableName)
+            .then(constraints => {
+                return Promise.all(constraints.map(constraint => {
+                    console.log("ZAP " + tableName + ":" + constraint.constraintName)
+                    return queryInterface.removeConstraint(tableName, constraint.constraintName);
+                    
+                }));
+            });
+        }));
+    })
+    
+}
+
+
+function dropTables(database) {
+    //this is a hack for dev only!
+    //todo: check status of posted github issue, https://github.com/sequelize/sequelize/issues/7606
+    const queryInterface = database.getQueryInterface();
+    return queryInterface.dropAllTables();
+    console.log("All Tables Dropped");
+    
+}
+
 db.connection.authenticate().then(async () => {
 	console.log('Connection has been established successfully.');
 
 	try {
-		await db.connection.sync({force:true}).then(() => {
+
+		 dropTables(db.connection);
+
+		 db.connection.sync({force:true}).then(() => {
 			return Seed();
 			});
-		
 
-		console.log("Synced", db.connection.getDatabaseName());
 
 		//middleware
 		app.use(morgan('dev'));
@@ -45,12 +84,21 @@ db.connection.authenticate().then(async () => {
 			next();
 		});
 
+		
+
+
+
 		//routes
 		app.use('/teams', teamRoutes);
 		app.use('/conferences', conferenceRoutes);
 		app.use('/prospects', prospectRoutes);
 		app.use('/Picks', pickRoutes);
 		app.use('/TeamNeeds', needRoutes);
+		app.use('/drafts', draftRoutes);
+		app.use('/rounds', roundRoutes);
+		app.use('/position', positionRoutes);
+
+		
 		
 
 

@@ -2,10 +2,12 @@ const { Sequelize } = require('sequelize');
 const db = require('../db')
 
 
-Team = db.connection.define('position',
+
+
+Position = db.connection.define('position',
 	{
-		abbreviation: {
-			field: 'abbreviation',
+		Id: {
+			field: 'Id',
 			type: Sequelize.STRING,
 			allowNull: false,
 			primaryKey: true
@@ -27,8 +29,15 @@ Team = db.connection.define('position',
 )
 
 
+Position.associate = function(models){
+	Position.hasMany(models.TeamNeed);
+}
+
+Position.associate = function(models){
+	Position.hasMany(models.prospect);
+}
 
 
-module.exports = Team;
+module.exports = Position;
 
 

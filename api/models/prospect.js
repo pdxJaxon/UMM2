@@ -1,12 +1,11 @@
 const { Sequelize } = require('sequelize');
 
 const db = require('../db');
-const position = require('../models/position');
 
 
 Prospect = db.connection.define('prospect',
 	{
-		prospectId: {
+		Id: {
 			field: 'prospectId',
 			type: Sequelize.INTEGER,
 			primaryKey: true,
@@ -28,10 +27,6 @@ Prospect = db.connection.define('prospect',
 			field: 'Weight',
 			type: Sequelize.STRING
 		},
-		positionId: {
-			field: 'PositionId',
-			type: Sequelize.INTEGER
-		},
 		year: {
 			field: 'Year',
 			type: Sequelize.STRING
@@ -47,11 +42,9 @@ Prospect = db.connection.define('prospect',
 )
 
 
-
-
-
-console.log('prospects created')
-
+Prospect.associate = function(models){
+	Prospect.belongsTo(models.Position);
+}
 
 
 

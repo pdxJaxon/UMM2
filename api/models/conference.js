@@ -39,9 +39,7 @@ conferences = [
 	{abbreviation: 'Sunbelt', name: 'Sunbelt Conference'},
 ];
 
-Conference.bulkCreate(conferences,{validate:false}).then(()=>{
-	console.log('conferences created')
-});
+
 
 module.exports = Conference;
 

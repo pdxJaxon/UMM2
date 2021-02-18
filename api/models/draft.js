@@ -1,12 +1,14 @@
 const { Sequelize } = require('sequelize');
 const db = require('../db');
 
+const Round = require('../models/round');
+
 //Each Session will have its own DRAFT
 //If a DRAFT Record has no sessionID, it is assumed our "Primary"
 Draft = db.connection.define('draft',
 	{
-		draftId: {
-			field: 'draftId',
+		Id: {
+			field: 'Id',
 			type: Sequelize.INTEGER,
 			primaryKey: true,
 			autoincrement: false
@@ -17,7 +19,8 @@ Draft = db.connection.define('draft',
 	}
 )
 
-
+Draft.hasMany(Round);
+Round.belongsTo(Draft);
 
 module.exports = Draft;
 

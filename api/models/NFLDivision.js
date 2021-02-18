@@ -5,8 +5,8 @@ const NFLConference = require('../models/NFLConference')
 //Example: AFC North, NFC East
 module.exports = db.connection.define('NFLDivision',
 	{
-		NFLDivisionId: {
-			field: 'NFLDivisionId',
+		Id: {
+			field: 'Id',
 			type: Sequelize.INTEGER,
 			primaryKey: true,
 			autoincrement: true
