@@ -55,6 +55,6 @@ module.exports = () => {
   {Id:48, fname: "Tyler", lname:"Linderbaum", positionId:"OG",year:"",schoolId:"Iowa",height:"",weight:""},
   {Id:49, fname: "Jayson", lname:"Oweh", positionId:"Edge",year:"",schoolId:"Penn State",height:"",weight:""},
   {Id:50, fname: "Jamie", lname:"Newman", positionId:"QB",year:"",schoolId:"Georgia",height:"",weight:""}  
-]);
+],{validate:false});
 console.log('Prospect Seed Files Successfully Executed...')
 };

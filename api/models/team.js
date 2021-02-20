@@ -6,7 +6,7 @@ const db = require('../db')
 Team = db.connection.define('team',
 	{
 		Id: {
-			field: 'teamId',
+			field: 'Id',
 			type: Sequelize.INTEGER,
 			primaryKey: true,
 			autoincrement: false
@@ -30,13 +30,7 @@ Team = db.connection.define('team',
 )
 
 
-Team.associate = function(models){
-	Team.hasMany(models.TeamNeed);
-}
 
-Team.associate = function(models){
-	Team.hasMany(models.Pick);
-}
 
 
 

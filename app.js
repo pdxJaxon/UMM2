@@ -96,7 +96,7 @@ db.connection.authenticate().then(async () => {
 		app.use('/TeamNeeds', needRoutes);
 		app.use('/drafts', draftRoutes);
 		app.use('/rounds', roundRoutes);
-		app.use('/position', positionRoutes);
+		app.use('/positions', positionRoutes);
 
 		
 		

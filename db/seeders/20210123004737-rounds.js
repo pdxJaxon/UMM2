@@ -5,13 +5,13 @@ const Round = require('../../api/models/round');
 module.exports = () => {
     
   return Round.bulkCreate([
-  	{roundId: 1, draftId: 2021},
-	{roundId: 2, draftId: 2021},
-	{roundId: 3, draftId: 2021},
-	{roundId: 4, draftId: 2021},
-	{roundId: 5, draftId: 2021},
-	{roundId: 6, draftId: 2021},
-	{roundId: 7, draftId: 2021}
-]);
+  	{Id: 1, draftId: 2021},
+	{Id: 2, draftId: 2021},
+	{Id: 3, draftId: 2021},
+	{Id: 4, draftId: 2021},
+	{Id: 5, draftId: 2021},
+	{Id: 6, draftId: 2021},
+	{Id: 7, draftId: 2021}
+],{validate:false});
 
 };

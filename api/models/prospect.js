@@ -2,6 +2,7 @@ const { Sequelize } = require('sequelize');
 
 const db = require('../db');
 
+const Position = require('../models/position');
 
 Prospect = db.connection.define('prospect',
 	{
@@ -18,6 +19,14 @@ Prospect = db.connection.define('prospect',
 		lname: {
 			field: 'LName',
 			type: Sequelize.STRING
+		},
+		positionId: {
+			field: 'positionId',
+			type: Sequelize.STRING,
+			references: {
+				model:'Position',
+				key: 'Id'
+			}
 		},
 		height: {
 			field: 'Height',
@@ -42,9 +51,8 @@ Prospect = db.connection.define('prospect',
 )
 
 
-Prospect.associate = function(models){
-	Prospect.belongsTo(models.Position);
-}
+
+
 
 
 

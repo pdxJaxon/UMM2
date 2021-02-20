@@ -3,7 +3,6 @@ const db = require('../db')
 
 
 
-
 Position = db.connection.define('position',
 	{
 		Id: {
@@ -29,13 +28,6 @@ Position = db.connection.define('position',
 )
 
 
-Position.associate = function(models){
-	Position.hasMany(models.TeamNeed);
-}
-
-Position.associate = function(models){
-	Position.hasMany(models.prospect);
-}
 
 
 module.exports = Position;

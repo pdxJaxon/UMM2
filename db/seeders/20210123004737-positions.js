@@ -21,6 +21,6 @@ module.exports = () => {
 	{Id: 'K', name: 'Kicker', positionPriority:20},
 	{Id: 'P', name: 'Punter', positionPriority:10},
 	{Id: 'LS', name: 'Long Snapper', positionPriority:5}
-]);
+],{validate:false});
 
 };

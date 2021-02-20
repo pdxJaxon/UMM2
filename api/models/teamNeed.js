@@ -9,9 +9,25 @@ TeamNeed = db.connection.define('teamNeed',
 		Id: {
 			field: 'Id',
 			type: Sequelize.INTEGER,
-			allowNull: false,
 			primaryKey: true,
-			autoincrement: true
+			autoincrement: false
+		},
+		teamId: {
+			field:'teamId',
+			type: Sequelize.INTEGER,
+			allowNull: false,
+			references: {
+				model: 'team',
+				key: 'Id'
+			}
+		},
+		positionId: {
+			field: 'positionId',
+			type: Sequelize.STRING,
+			references: {
+				model: 'position',
+				key: 'Id'
+			}
 		},
 		needScore: {
 			field: 'needScore',
@@ -24,13 +40,7 @@ TeamNeed = db.connection.define('teamNeed',
 	}
 )
 
-TeamNeed.associate = function(models){
-	TeamNeed.belongsTo(models.Team);
-}
 
-TeamNeed.associate = function(models){
-	TeamNeed.belongsTo(models.Position);
-}
 
 
 module.exports = TeamNeed

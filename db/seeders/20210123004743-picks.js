@@ -37,6 +37,6 @@ module.exports = () => {
   {Id:30, roundId: 1, pickNumber:30, teamId:25},
   {Id:31, roundId: 1, pickNumber:31, teamId:17},
   {Id:32, roundId: 1, pickNumber:32, teamId:29}
-  ]);
+  ],{validate:false});
   console.log('Pick Seed Files Successfully Executed...')
 };

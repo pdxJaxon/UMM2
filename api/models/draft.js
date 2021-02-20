@@ -19,8 +19,6 @@ Draft = db.connection.define('draft',
 	}
 )
 
-Draft.hasMany(Round);
-Round.belongsTo(Draft);
 
 module.exports = Draft;
 

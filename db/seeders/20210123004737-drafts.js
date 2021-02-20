@@ -6,6 +6,6 @@ module.exports = () => {
     
   return Draft.bulkCreate([
   {Id: 2021}
-]);
+],{validate:false});
 
 };

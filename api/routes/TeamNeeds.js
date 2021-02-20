@@ -3,13 +3,20 @@ const router = express.Router();
 
 
 const TeamNeed = require('../models/teamNeed');
-const Team = require('../models/Team');
 
-router.get('/',(req,resp,next) => {
-	resp.status(200).json({
-		message: 'this is get team needs',
-		status: 'ok'
-	})
+
+
+router.get('/', async (req, res, next) => {
+	try {
+		needs = await TeamNeed.findAll();
+		if (needs.length > 0) {
+			return res.json(needs);
+		}
+		res.status(404).json({message: "No FLIPPING team NEEDs found"});
+	} catch(err) {
+			console.log(err);
+			res.status(500).json({message: "An unexpected error occurred"});
+	}
 });
 
 

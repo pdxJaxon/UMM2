@@ -4,13 +4,22 @@ const db = require('../db')
 const Draft = require('../models/draft');
 
 
+
 Round = db.connection.define('round',
 	{
 		Id: {
-			field: 'roundId',
+			field: 'Id',
 			type: Sequelize.INTEGER,
 			primaryKey: true,
 			autoincrement: false
+		},
+		draftId: {
+			field: 'draftId',
+			type: Sequelize.INTEGER,
+			references:{
+				model:'Draft',
+				key:'Id'
+			}
 		}
 	},
 	{
@@ -18,9 +27,7 @@ Round = db.connection.define('round',
 	}
 )
 
-Round.associate = function(models){
-	Round.belongsTo(models.Draft);
-}
+
 
 
 module.exports = Round;

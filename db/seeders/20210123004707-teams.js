@@ -37,7 +37,7 @@ module.exports = () => {
     {Id: 30, abbreviation: 'LV', city:'Las Vegas', nickname: 'Raiders'},
     {Id: 31, abbreviation: 'DEN', city:'Denver', nickname: 'Broncos'},
     {Id: 32, abbreviation: 'LAC', city:'Los Angeles', nickname: 'Chargers'}
-  ]);
+  ],{validate:false});
 
   console.log('Team Files Successfully Executed...')
 
