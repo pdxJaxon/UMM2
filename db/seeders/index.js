@@ -19,9 +19,9 @@ module.exports = function() {
 			//seeds that depend on FKs from above seeds
 			RoundSeed()
 			,TeamNeedSeed()
-			//ProspectSeed()
+			,ProspectSeed()
 		}).then(() => {
-			//PickSeed()
+			PickSeed()
 		}).then(() => {
 			console.log('All Seed Files Successfully Executed...')
 		});

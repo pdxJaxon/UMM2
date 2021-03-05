@@ -13,6 +13,14 @@ Pick = db.connection.define('pick',
 		pickNumber: {
 			field: 'pickNumber',
 			type: Sequelize.INTEGER
+		},
+		teamId: {
+			field: 'teamId',
+			type: Sequelize.INTEGER,
+			references: {
+				model: 'Team',
+				key: 'Id'
+			}
 		}
 	},
 	{
