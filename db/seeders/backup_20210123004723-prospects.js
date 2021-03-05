@@ -1,0 +1,60 @@
+'use strict';
+
+const Prospect = require('../../api/models/prospect');
+
+module.exports = () => {
+    
+  return Prospect.bulkCreate([
+  {"prospectId":1, "fname": "Trevor", "lname":"Lawrence", "positionId":"QB","year":"Jr","school":"Clemson","height":"6-6","weight":"208"},
+  {"prospectId":2, "fname": "Justin", "lname":"Fields", "positionId":"QB","year":"JR","school":"Ohio State","height":"6-3","weight":"228"},
+  {"prospectId":3, "fname": "Penei", "lname":"Sewell", "positionId":"OT","year":"SO","school":"Oregon","height":"6-6","weight":"325"},
+  {"prospectId":4, "fname": "Ja'Marr", "lname":"Chase", "positionId":"WR","year":"SO","school":"LSU","height":"6-1","weight":"200"},
+  {"prospectId":5, "fname": "Micah", "lname":"Parsons", "positionId":"LB","year":"JR","school":"Penn State","height":"6-3","weight":"240"},
+  {"prospectId":6, "fname": "Jaylen", "lname":"Waddle", "positionId":"WR","year":"JR","school":"Alabama","height":"5-10","weight":"182"},
+  {"prospectId":7, "fname": "Trey", "lname":"Lance", "positionId":"QB","year":"SO","school":"North Dakota","height":"6-4","weight":"226"},
+  {"prospectId":8, "fname": "Kyle", "lname":"Pitts", "positionId":"TE","year":"JR","school":"Florida","height":"6-6","weight":"240"},
+  {"prospectId":9, "fname": "Kwity", "lname":"Paye", "positionId":"Edge","year":"Sr","school":"Michigan","height":"6-4","weight":"272"},
+  {"prospectId":10, "fname": "Gregory", "lname":"Rousseau", "positionId":"Edge","year":"FR","school":"Miami","height":"6-6","weight":"260"},
+  {"prospectId":11, "fname": "Rondale", "lname":"Moore", "positionId":"WR","year":"","school":"Purdue","height":"","weight":""},
+  {"prospectId":12, "fname": "Alex", "lname":"Leatherwood", "positionId":"OT","year":"JR","school":"Oregon","height":"6-6","weight":"345"},
+  {"prospectId":13, "fname": "Marvin", "lname":"Wilson", "positionId":"DL","year":"","school":"Florida State","height":"","weight":""}, 
+  {"prospectId":14, "fname": "Nick", "lname":"Bolton", "positionId":"LB","year":"","school":"Missouri","height":"","weight":""},
+  {"prospectId":15, "fname": "Dylan", "lname":"Moses", "positionId":"LB","year":"","school":"Alabama","height":"","weight":""},
+  {"prospectId":16, "fname": "Carlos", "lname":"Basham Jr", "positionId":"Edge","year":"","school":"Wake Forest","height":"","weight":""},
+  {"prospectId":17, "fname": "Caleb", "lname":"Farley", "positionId":"CB","year":"","school":"Virginia Tech","height":"","weight":""},
+  {"prospectId":18, "fname": "Walker", "lname":"Little", "positionId":"OT","year":"","school":"Standord","height":"","weight":""},
+  {"prospectId":19, "fname": "Brock", "lname":"Purdy", "positionId":"QB","year":"","school":"Iowa St","height":"","weight":""},
+  {"prospectId":20, "fname": "Christian", "lname":"Barmore", "positionId":"DL","year":"","school":"Alabama","height":"","weight":""},
+  {"prospectId":21, "fname": "Ar'Darius", "lname":"Washington", "positionId":"S","year":"","school":"TCU","height":"","weight":""},
+  {"prospectId":22, "fname": "Jevon", "lname":"Holland", "positionId":"CB","year":"","school":"Oregon","height":"","weight":""},
+  {"prospectId":23, "fname": "Samuel", "lname":"Cosmi", "positionId":"OT","year":"","school":"Texas","height":"","weight":""},
+  {"prospectId":24, "fname": "Rashod", "lname":"Bateman", "positionId":"WR","year":"","school":"Minnesota","height":"","weight":""},
+  {"prospectId":25, "fname": "Shaun", "lname":"Wade", "positionId":"CB","year":"","school":"Ohio State","height":"","weight":""},
+  {"prospectId":26, "fname": "Amon-Ra", "lname":"St Brown", "positionId":"WR","year":"","school":"USC.","height":"","weight":""},
+  {"prospectId":27, "fname": "DeVonta", "lname":"Smith", "positionId":"WR","year":"","school":"Alabama","height":"","weight":""},
+  {"prospectId":28, "fname": "Wyatt", "lname":"Davis", "positionId":"OG","year":"","school":"Ohio State","height":"","weight":""},
+  {"prospectId":29, "fname": "Patrick", "lname":"Surtain II", "positionId":"CB","year":"","school":"Alabama","height":"","weight":""},
+  {"prospectId":30, "fname": "Travis", "lname":"Etienne", "positionId":"RB","year":"","school":"Clemson","height":"","weight":""},
+  {"prospectId":31, "fname": "Pat", "lname":"Freiermuth", "positionId":"TE","year":"","school":"Penn State","height":"","weight":""},
+  {"prospectId":32, "fname": "Andre", "lname":"Cisco", "positionId":"S","year":"","school":"Syracuse","height":"","weight":""},
+  {"prospectId":33, "fname": "Chris", "lname":"Rumph II", "positionId":"Edge","year":"","school":"Duke","height":"","weight":""},
+  {"prospectId":34, "fname": "Tutu", "lname":"Atwell", "positionId":"WR","year":"","school":"Louisville","height":"","weight":""},
+  {"prospectId":35, "fname": "Hamsah", "lname":"Nasirildeen", "positionId":"S","year":"","school":"Florida State","height":"","weight":""},
+  {"prospectId":36, "fname": "Trey", "lname":"Smith", "positionId":"OG","year":"","school":"Tennessee","height":"","weight":""},
+  {"prospectId":37, "fname": "Trevon", "lname":"Moehrig", "positionId":"S","year":"","school":"TCU","height":"","weight":""},
+  {"prospectId":38, "fname": "Aidan", "lname":"Hutchinson", "positionId":"Edge","year":"","school":"Michigan","height":"","weight":""},
+  {"prospectId":39, "fname": "Xavier", "lname":"Thomas", "positionId":"Edge","year":"","school":"Clemson","height":"","weight":""},
+  {"prospectId":40, "fname": "Chris", "lname":"Olave", "positionId":"WR","year":"","school":"Ohio State","height":"","weight":""},
+  {"prospectId":41, "fname": "Asante", "lname":"Samuel Jr", "positionId":"CB","year":"","school":"Florida State","height":"","weight":""},
+  {"prospectId":42, "fname": "Levi", "lname":"Onwuzurike", "positionId":"DL","year":"","school":"Washington","height":"","weight":""},
+  {"prospectId":43, "fname": "Tamorrion", "lname":"Terry", "positionId":"WR","year":"","school":"Florida State","height":"","weight":""},
+  {"prospectId":44, "fname": "Liam", "lname":"Eichenberg", "positionId":"OT","year":"","school":"Notre Dame","height":"","weight":""},
+  {"prospectId":45, "fname": "Cory", "lname":"Durden", "positionId":"DL","year":"","school":"Florida State","height":"","weight":""},
+  {"prospectId":46, "fname": "Chazz", "lname":"Surratt", "positionId":"LB","year":"","school":"North Carolina","height":"","weight":""},
+  {"prospectId":47, "fname": "Quincy", "lname":"Roche", "positionId":"Edge","year":"","school":"Miami","height":"","weight":""},
+  {"prospectId":48, "fname": "Tyler", "lname":"Linderbaum", "positionId":"OG","year":"","school":"Iowa","height":"","weight":""},
+  {"prospectId":49, "fname": "Jayson", "lname":"Oweh", "positionId":"Edge","year":"","school":"Penn State","height":"","weight":""},
+  {"prospectId":50, "fname": "Jamie", "lname":"Newman", "positionId":"QB","year":"","school":"Georgia","height":"","weight":""}  
+]);
+console.log('Prospect Seed Files Successfully Executed...')
+};

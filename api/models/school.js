@@ -3,7 +3,7 @@ const db = require('../db')
 
 School = db.connection.define('school',
 	{
-		id: {
+		Id: {
 			field: 'schoolId',
 			type: Sequelize.INTEGER,
 			primaryKey: true,
@@ -29,25 +29,6 @@ School = db.connection.define('school',
 
 
 
-schools = [
-	{abbreviation: 'UofO', name: 'University of Oregon', mascot: 'Ducks',conference:''},
-	{abbreviation: 'UofO', name: 'University of Oregon', mascot: 'Ducks',conference:''},
-	{abbreviation: 'UofO', name: 'University of Oregon', mascot: 'Ducks',conference:''},
-	{abbreviation: 'UofO', name: 'University of Oregon', mascot: 'Ducks',conference:''},
-	{abbreviation: 'UofO', name: 'University of Oregon', mascot: 'Ducks',conference:''},
-	{abbreviation: 'UofO', name: 'University of Oregon', mascot: 'Ducks',conference:''},
-	{abbreviation: 'UofO', name: 'University of Oregon', mascot: 'Ducks',conference:''},
-	{abbreviation: 'UofO', name: 'University of Oregon', mascot: 'Ducks',conference:''},
-	{abbreviation: 'UofO', name: 'University of Oregon', mascot: 'Ducks',conference:''},
-	{abbreviation: 'UofO', name: 'University of Oregon', mascot: 'Ducks',conference:''},
-	{abbreviation: 'UofO', name: 'University of Oregon', mascot: 'Ducks',conference:''},
-	
-];
-
-
-School.bulkCreate(schools,{validate:true}).then(()=>{
-	console.log('schools created')
-});
 
 
 

@@ -3,22 +3,31 @@ const db = require('../db')
 
 
 
+
 TeamNeed = db.connection.define('teamNeed',
 	{
-		teamNeedId: {
-			field: 'teamNeedId',
+		Id: {
+			field: 'Id',
 			type: Sequelize.INTEGER,
-			allowNull: false,
 			primaryKey: true,
-			autoincrement: true
+			autoincrement: false
 		},
 		teamId: {
-			field: 'teamId',
-			type: Sequelize.INTEGER
+			field:'teamId',
+			type: Sequelize.INTEGER,
+			allowNull: false,
+			references: {
+				model: 'team',
+				key: 'Id'
+			}
 		},
 		positionId: {
 			field: 'positionId',
-			type: Sequelize.INTEGER
+			type: Sequelize.STRING,
+			references: {
+				model: 'position',
+				key: 'Id'
+			}
 		},
 		needScore: {
 			field: 'needScore',
@@ -30,6 +39,7 @@ TeamNeed = db.connection.define('teamNeed',
 		freezeTableName: true
 	}
 )
+
 
 
 

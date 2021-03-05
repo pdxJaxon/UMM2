@@ -2,10 +2,11 @@ const { Sequelize } = require('sequelize');
 const db = require('../db')
 
 
+
 Team = db.connection.define('team',
 	{
-		teamId: {
-			field: 'teamId',
+		Id: {
+			field: 'Id',
 			type: Sequelize.INTEGER,
 			primaryKey: true,
 			autoincrement: false
@@ -27,6 +28,9 @@ Team = db.connection.define('team',
 		freezeTableName: true
 	}
 )
+
+
+
 
 
 

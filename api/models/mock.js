@@ -4,7 +4,7 @@ const db = require('../db');
 
 Mock = db.connection.define('mock',
 	{
-		mockId: {
+		Id: {
 			field: 'mockId',
 			type: Sequelize.INTEGER,
 			primaryKey: true,

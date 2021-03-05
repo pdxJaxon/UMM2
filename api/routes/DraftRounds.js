@@ -1,20 +1,25 @@
 const express = require('express')
 const router = express.Router();
 
-router.get('/',(req,resp,next) => {
-	resp.status(200).json({
-		message: 'this is get Round',
-		status: 'ok'
-	})
+
+const Round = require('../models/round');
+
+
+router.get('/', async (req, res, next) => {
+	try {
+		rounds = await Round.findAll();
+		if (rounds.length > 0) {
+			return res.json(rounds);
+		}
+		res.status(404).json({message: "No damn rounds found"});
+	} catch(err) {
+			console.log(err);
+			res.status(500).json({message: "An unexpected error occurred"});
+	}
 });
 
 
-router.post('/',(req,resp,next) => {
-	resp.status(201).json({
-		message: 'this is post round',
-		status: 'ok'
-	})
-});
+
 
 router.get('/:roundId', (req,resp,next) => {
 	const id = req.params.roundId;
@@ -25,32 +30,6 @@ router.get('/:roundId', (req,resp,next) => {
 	});
 	
 })
-
-
-router.patch('/:roundId', (req,resp,next) => {
-	const id = req.params.roundId;
-	
-	resp.status(200).json({
-		message: "round By ID Updated",
-		id: id 
-	});
-	
-})
-
-
-
-
-router.delete('/:roundId', (req,resp,next) => {
-	const id = req.params.roundId;
-	
-	resp.status(200).json({
-		message: "round By ID Deleted",
-		id: id 
-	});
-	
-})
-
-
 
 
 

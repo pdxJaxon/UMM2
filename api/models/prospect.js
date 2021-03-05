@@ -1,12 +1,12 @@
 const { Sequelize } = require('sequelize');
 
 const db = require('../db');
-const position = require('../models/position');
 
+const Position = require('../models/position');
 
 Prospect = db.connection.define('prospect',
 	{
-		prospectId: {
+		Id: {
 			field: 'prospectId',
 			type: Sequelize.INTEGER,
 			primaryKey: true,
@@ -20,6 +20,14 @@ Prospect = db.connection.define('prospect',
 			field: 'LName',
 			type: Sequelize.STRING
 		},
+		positionId: {
+			field: 'positionId',
+			type: Sequelize.STRING,
+			references: {
+				model:'Position',
+				key: 'Id'
+			}
+		},
 		height: {
 			field: 'Height',
 			type: Sequelize.STRING
@@ -27,10 +35,6 @@ Prospect = db.connection.define('prospect',
 		weight: {
 			field: 'Weight',
 			type: Sequelize.STRING
-		},
-		positionId: {
-			field: 'PositionId',
-			type: Sequelize.INTEGER
 		},
 		year: {
 			field: 'Year',
@@ -48,9 +52,6 @@ Prospect = db.connection.define('prospect',
 
 
 
-
-
-console.log('prospects created')
 
 
 
