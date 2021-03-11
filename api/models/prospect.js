@@ -1,28 +1,27 @@
-const { Sequelize } = require('sequelize');
+const { DataTypes } = require('sequelize');
 
-const db = require('../db');
 
-const Position = require('../models/position');
+module.exports = (sequelize) => {
 
-Prospect = db.connection.define('prospect',
+	sequelize.define('prospect',
 	{
 		Id: {
 			field: 'prospectId',
-			type: Sequelize.INTEGER,
+			type: DataTypes.INTEGER,
 			primaryKey: true,
 			autoincrement: false
 		},
 		fname: {
 			field: 'FName',
-			type: Sequelize.STRING
+			type: DataTypes.STRING
 		},
 		lname: {
 			field: 'LName',
-			type: Sequelize.STRING
+			type: DataTypes.STRING
 		},
 		positionId: {
 			field: 'positionId',
-			type: Sequelize.STRING,
+			type: DataTypes.STRING,
 			references: {
 				model:'Position',
 				key: 'Id'
@@ -30,19 +29,19 @@ Prospect = db.connection.define('prospect',
 		},
 		height: {
 			field: 'Height',
-			type: Sequelize.STRING
+			type: DataTypes.STRING
 		},
 		weight: {
 			field: 'Weight',
-			type: Sequelize.STRING
+			type: DataTypes.STRING
 		},
 		year: {
 			field: 'Year',
-			type: Sequelize.STRING
+			type: DataTypes.STRING
 		},
 		schoolId: {
 			field: 'SchoolId',
-			type: Sequelize.INTEGER
+			type: DataTypes.INTEGER
 		}
 	},
 	{
@@ -50,13 +49,7 @@ Prospect = db.connection.define('prospect',
 	}
 )
 
-
-
-
-
-
-
-module.exports = Prospect
+};
 
 
 

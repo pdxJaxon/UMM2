@@ -1,19 +1,19 @@
-const { Sequelize } = require('sequelize');
-const db = require('../db')
-const NFLConference = require('../models/NFLConference')
+const { DataTypes } = require('sequelize');
 
-//Example: AFC North, NFC East
-module.exports = db.connection.define('NFLDivision',
+
+module.exports = (sequelize) => {
+
+	sequelize.define('team',
 	{
 		Id: {
 			field: 'Id',
-			type: Sequelize.INTEGER,
+			type: DataTypes.INTEGER,
 			primaryKey: true,
 			autoincrement: true
 		},
 		NFLDivisionName: {
 			field: 'NFLDivisionName',
-			type: Sequelize.STRING
+			type: DataTypes.STRING
 		}
 	},
 	{
@@ -21,4 +21,4 @@ module.exports = db.connection.define('NFLDivision',
 	}
 )
 
-
+};

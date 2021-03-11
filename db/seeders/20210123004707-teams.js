@@ -1,10 +1,11 @@
 'use strict';
 
-const Team = require('../../api/models/team');
+const sequelize = require('../index');
 
-module.exports = () => {
-    
-  return Team.bulkCreate([
+module.exports = {
+    up: function () {
+ 
+  return sequelize.models.Team.bulkCreate([
     {Id: 1, abbreviation: 'LAR', city:'Los Angeles', nickname: 'Rams'},
     {Id: 2, abbreviation: 'SEA', city:'Seattle', nickname: 'Seahawks'},
     {Id: 3, abbreviation: 'AZ', city:'Arizona', nickname: 'Cardinals'},
@@ -38,7 +39,9 @@ module.exports = () => {
     {Id: 31, abbreviation: 'DEN', city:'Denver', nickname: 'Broncos'},
     {Id: 32, abbreviation: 'LAC', city:'Los Angeles', nickname: 'Chargers'}
   ],{validate:false});
-
-  console.log('Team Files Successfully Executed...')
-
+}
+,
+down: (queryInterface,Sequelize) => {
+    return queryInterface.bulkDelete('Team',null,{});
+}
 };

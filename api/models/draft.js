@@ -1,15 +1,13 @@
-const { Sequelize } = require('sequelize');
-const db = require('../db');
+const { DataTypes } = require('sequelize');
 
-const Round = require('../models/round');
 
-//Each Session will have its own DRAFT
-//If a DRAFT Record has no sessionID, it is assumed our "Primary"
-Draft = db.connection.define('draft',
+module.exports = (sequelize) => {
+
+	sequelize.define('draft',
 	{
 		Id: {
 			field: 'Id',
-			type: Sequelize.INTEGER,
+			type: DataTypes.INTEGER,
 			primaryKey: true,
 			autoincrement: false
 		}
@@ -19,7 +17,6 @@ Draft = db.connection.define('draft',
 	}
 )
 
-
-module.exports = Draft;
+};
 
 

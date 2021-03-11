@@ -1,21 +1,23 @@
-const { Sequelize } = require('sequelize');
-const db = require('../db')
+const { DataTypes } = require('sequelize');
 
-Conference = db.connection.define('conference',
+
+module.exports = (sequelize) => {
+
+	sequelize.define('Conference',
 	{
 		id: {
 			field: 'conferenceId',
-			type: Sequelize.INTEGER,
+			type: DataTypes.INTEGER,
 			primaryKey: true,
 			autoincrement: true
 		},
 		abbreviation: {
 			field: 'abbreviation',
-			type: Sequelize.STRING
+			type: DataTypes.STRING
 		},
 		name: {
 			field: 'name',
-			type: Sequelize.STRING
+			type: DataTypes.STRING
 		}
 	},
 	{
@@ -23,23 +25,4 @@ Conference = db.connection.define('conference',
 	}
 )
 
-
-
-conferences = [
-	{abbreviation: 'American', name: 'American Atheletic Conference'},
-	{abbreviation: 'ACC', name: 'Atlantic Coast Conference'},
-	{abbreviation: 'Big 12', name: 'Big 12 Conference'},
-	{abbreviation: 'Big Ten', name: 'Big 10 Conference'},
-	{abbreviation: 'Conference USA', name: 'Conference USA'},
-	{abbreviation: 'FBS Independents', name: 'FBS Independents'},
-	{abbreviation: 'Mid-American', name: 'Mid American Conference'},
-	{abbreviation: 'Mountain West', name: 'Mountain West Conference'},
-	{abbreviation: 'Pac-12', name: 'Pac 12 Conference'},
-	{abbreviation: 'SEC', name: 'Southeastern Conference'},
-	{abbreviation: 'Sunbelt', name: 'Sunbelt Conference'},
-];
-
-
-
-module.exports = Conference;
-
+};

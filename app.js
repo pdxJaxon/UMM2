@@ -1,4 +1,8 @@
 const express = require('express');
+const sequelize = require('./db/index');
+
+const PORT = process.env.PORT || 3000;
+
 
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
@@ -15,55 +19,35 @@ const positionRoutes = require('./api/routes/position');
 
 
 
-const db = require('./api/db');
-const Seed = require('./db/seeders/index');
+
+
+
 
 const app = express();
 
 
-function dropConstraints(database) {
-    //this is a hack for dev only!
-    //todo: check status of posted github issue, https://github.com/sequelize/sequelize/issues/7606
-    const queryInterface = database.getQueryInterface();
-    return queryInterface.showAllTables()
-    .then(tableNames => {
-
-        return Promise.all(tableNames.map(tableName => {
-        	console.log("ZAP " + tableName)
-            return queryInterface.showConstraint(tableName)
-            .then(constraints => {
-                return Promise.all(constraints.map(constraint => {
-                    console.log("ZAP " + tableName + ":" + constraint.constraintName)
-                    return queryInterface.removeConstraint(tableName, constraint.constraintName);
-                    
-                }));
-            });
-        }));
-    })
-    
-}
 
 
-function dropTables(database) {
-    //this is a hack for dev only!
-    //todo: check status of posted github issue, https://github.com/sequelize/sequelize/issues/7606
-    const queryInterface = database.getQueryInterface();
-    return queryInterface.dropAllTables();
-    console.log("All Tables Dropped");
-    
-}
-
-db.connection.authenticate().then(async () => {
-	console.log('Connection has been established successfully.');
-
+async function assertDatabaseConnectionOk(){
+	console.log(`Checking database connection...`);
 	try {
+		await sequelize.authenticate();
+		console.log('Database connection OK!');
+	} catch (error) {
+		console.log('Unable to connect to the database:');
+		console.log(error.message);
+		process.exit(1);
+	}
+}
 
-		 dropTables(db.connection);
 
-		 db.connection.sync({force:true}).then(() => {
-			return Seed();
-			});
+async function init(){
+	await assertDatabaseConnectionOk();
 
+
+	try{
+
+		 
 
 		//middleware
 		app.use(morgan('dev'));
@@ -123,11 +107,20 @@ db.connection.authenticate().then(async () => {
 				}
 			})
 		});
-	} catch(err) {
-		console.error('Could not sync database tables:', err);
+	} 
+	catch(err) {
+		console.error('Err Starting Express', err);
 	};
-}).catch(err => {
-  console.error('Unable to connect to the database:', err);
-});
 
+
+
+	app.listen(PORT);
+}
+
+
+
+	
+init();
+
+	
 module.exports = app;

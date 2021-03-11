@@ -2,13 +2,14 @@ const express = require('express')
 const router = express.Router();
 
 const Team = require('../models/team');
+const {models} = require('../../db/index');
 
 
 
 
 router.get('/', async (req, res, next) => {
 	try {
-		teams = await Team.findAll();
+		teams = await models.team.findAll();
 		if (teams.length > 0) {
 			return res.json(teams);
 		}

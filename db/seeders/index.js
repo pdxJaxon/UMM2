@@ -9,20 +9,25 @@ const PositionSeed = require('./20210123004737-positions');
 
 
 
-module.exports = function() {
-	return Promise.all([
+module.exports = async function() {
+	try{
+	await Promise.all([
 			//independent self standing seeds
-			TeamSeed(),
-			PositionSeed(),
-			DraftSeed()
+			TeamSeed,
+			PositionSeed,
+			DraftSeed
 		]).then(() => {
 			//seeds that depend on FKs from above seeds
-			RoundSeed()
-			,TeamNeedSeed()
-			,ProspectSeed()
+			RoundSeed
+			,TeamNeedSeed
+			,ProspectSeed
 		}).then(() => {
-			PickSeed()
+			PickSeed
 		}).then(() => {
 			console.log('All Seed Files Successfully Executed...')
 		});
+	}
+	catch(err) {
+		console.error('Err Seeding DB', err);
+	};
 }

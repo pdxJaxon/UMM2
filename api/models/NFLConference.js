@@ -1,25 +1,28 @@
-const { Sequelize } = require('sequelize');
-const db = require('../db')
+const { DataTypes } = require('sequelize');
 
-//Example: American Football Conference AFC
-module.exports = db.connection.define('NFLConference',
+
+module.exports = (sequelize) => {
+
+	sequelize.define('NFLConference',
 	{
 		Id: {
 			field: 'Id',
-			type: Sequelize.INTEGER,
+			type: DataTypes.INTEGER,
 			primaryKey: true,
 			autoincrement: true
 		},
 		NFLConferenceName: {
 			field: 'NFLConferenceName',
-			type: Sequelize.STRING
+			type: DataTypes.STRING
 		},
 		NFLConferenceAbbreviation: {
 			field: 'NFLConferenceAbbreviation',
-			type: Sequelize.STRING
+			type: DataTypes.STRING
 		}
 	},
 	{
 		freezeTableName: true
 	}
 )
+
+};

@@ -1,9 +1,8 @@
 'use strict';
 
-const TeamNeed = require('../../api/models/teamNeed');
-
-module.exports = () => {
-  return TeamNeed.bulkCreate([
+module.exports =  {
+  up: (queryInterface,Sequelize) => {
+    return queryInterface.bulkInsert('teamNeed',[
     {Id: 1, teamId: 1, positionId: 'QB', needScore: 50},
     {Id: 2, teamId: 1, positionId: 'WR', needScore: 50},
     {Id: 3, teamId: 1, positionId: 'TE', needScore: 50},
@@ -485,5 +484,8 @@ module.exports = () => {
     {Id: 480, teamId: 32, positionId: 'K', needScore: 50},
     {Id: 481, teamId: 32, positionId: 'P', needScore: 50}
   ],{validate:false});
-    console.log('Need Seed Files Successfully Executed...')
+},
+down: (queryInterface,Sequelize) => {
+    return queryInterface.bulkDelete('teamNeed',null,{});
+    }
 };

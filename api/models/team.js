@@ -1,27 +1,27 @@
-const { Sequelize } = require('sequelize');
-const db = require('../db')
+const { DataTypes } = require('sequelize');
 
 
+module.exports = (sequelize) => {
 
-Team = db.connection.define('team',
+	sequelize.define('team',
 	{
 		Id: {
 			field: 'Id',
-			type: Sequelize.INTEGER,
+			type: DataTypes.INTEGER,
 			primaryKey: true,
 			autoincrement: false
 		},
 		abbreviation: {
 			field: 'abbreviation',
-			type: Sequelize.STRING
+			type: DataTypes.STRING
 		},
 		city: {
 			field: 'city',
-			type: Sequelize.STRING
+			type: DataTypes.STRING
 		},
 		nickname: {
 			field: 'nickname',
-			type: Sequelize.STRING
+			type: DataTypes.STRING
 		}
 	},
 	{
@@ -29,12 +29,6 @@ Team = db.connection.define('team',
 	}
 )
 
-
-
-
-
-
-
-module.exports = Team;
+};
 
 

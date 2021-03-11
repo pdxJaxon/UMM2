@@ -1,25 +1,27 @@
-const { Sequelize } = require('sequelize');
-const db = require('../db')
+const { DataTypes } = require('sequelize');
 
-//Example: Pac-12, BigSky, SEC, etc
-module.exports = db.connection.define('collegeConference',
+
+module.exports = (sequelize) => {
+
+	sequelize.define('collegeConference',
 	{
 		collegeConferenceId: {
 			field: 'collegeConferenceId',
-			type: Sequelize.INTEGER,
+			type: DataTypes.INTEGER,
 			primaryKey: true,
 			autoincrement: true
 		},
 		conferenceName: {
 			field: 'ConferenceName',
-			type: Sequelize.STRING
+			type: DataTypes.STRING
 		},
 		ConferenceAbbreviation: {
 			field: 'ConferenceAbbreviation',
-			type: Sequelize.STRING
+			type: DataTypes.STRING
 		}
 	},
 	{
 		freezeTableName: true
 	}
 )
+};

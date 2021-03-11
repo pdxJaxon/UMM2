@@ -1,22 +1,23 @@
-const { Sequelize } = require('sequelize');
-const db = require('../db')
-const CollegeConference = require('CollegeConference')
+const { DataTypes } = require('sequelize');
 
-module.exports = db.connection.define('College',
+
+module.exports = (sequelize) => {
+
+	sequelize.define('College',
 	{
 		id: {
 			field: 'CollegeId',
-			type: Sequelize.INTEGER,
+			type: DataTypes.INTEGER,
 			primaryKey: true,
 			autoincrement: true
 		},
 		Name: {
 			field: 'CollegeName',
-			type: Sequelize.STRING
+			type: DataTypes.STRING
 		},
 		Abbreviation: {
 			field: 'Abbreviation',
-			type: Sequelize.STRING
+			type: DataTypes.STRING
 		}
 	},
 	{
@@ -24,4 +25,4 @@ module.exports = db.connection.define('College',
 	}
 )
 
-
+};

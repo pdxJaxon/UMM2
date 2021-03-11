@@ -1,21 +1,19 @@
-const { Sequelize } = require('sequelize');
-const db = require('../db')
-
-const Draft = require('../models/draft');
+const { DataTypes } = require('sequelize');
 
 
+module.exports = (sequelize) => {
 
-Round = db.connection.define('round',
+	sequelize.define('Round',
 	{
 		Id: {
 			field: 'Id',
-			type: Sequelize.INTEGER,
+			type: DataTypes.INTEGER,
 			primaryKey: true,
 			autoincrement: false
 		},
 		draftId: {
 			field: 'draftId',
-			type: Sequelize.INTEGER,
+			type: DataTypes.INTEGER,
 			references:{
 				model:'Draft',
 				key:'Id'
@@ -27,8 +25,5 @@ Round = db.connection.define('round',
 	}
 )
 
-
-
-
-module.exports = Round;
+};
 

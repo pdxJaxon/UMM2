@@ -1,22 +1,23 @@
-const { Sequelize } = require('sequelize');
-const db = require('../db');
+const { DataTypes } = require('sequelize');
 
 
-Mock = db.connection.define('mock',
+module.exports = (sequelize) => {
+
+	sequelize.define('Mock',
 	{
 		Id: {
 			field: 'mockId',
-			type: Sequelize.INTEGER,
+			type: DataTypes.INTEGER,
 			primaryKey: true,
 			autoincrement: true
 		},
 		userId: {
 			field: 'userId',
-			type: Sequelize.INTEGER
+			type: DataTypes.INTEGER
 		},
 		sessionId: {
 			field: 'sessionId',
-			type: Sequelize.STRING
+			type: DataTypes.STRING
 		}
 	},
 	{
@@ -25,8 +26,6 @@ Mock = db.connection.define('mock',
 )	
 	
 
-
-
-module.exports = Mock;
+};
 
 
