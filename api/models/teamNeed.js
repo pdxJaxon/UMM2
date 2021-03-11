@@ -1,20 +1,19 @@
-const { Sequelize } = require('sequelize');
-const db = require('../db')
+const {  DataTypes  } = require('sequelize');
 
 
+module.exports = (sequelize) => {
 
-
-TeamNeed = db.connection.define('teamNeed',
+	sequelize.define('teamNeed',
 	{
 		Id: {
 			field: 'Id',
-			type: Sequelize.INTEGER,
+			type: DataTypes.INTEGER,
 			primaryKey: true,
 			autoincrement: false
 		},
 		teamId: {
 			field:'teamId',
-			type: Sequelize.INTEGER,
+			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'team',
@@ -23,7 +22,7 @@ TeamNeed = db.connection.define('teamNeed',
 		},
 		positionId: {
 			field: 'positionId',
-			type: Sequelize.STRING,
+			type: DataTypes.STRING,
 			references: {
 				model: 'position',
 				key: 'Id'
@@ -31,7 +30,7 @@ TeamNeed = db.connection.define('teamNeed',
 		},
 		needScore: {
 			field: 'needScore',
-			type: Sequelize.INTEGER
+			type: DataTypes.INTEGER
 		}
 		
 	},
@@ -41,6 +40,11 @@ TeamNeed = db.connection.define('teamNeed',
 )
 
 
+};
 
 
-module.exports = TeamNeed
+
+
+
+
+

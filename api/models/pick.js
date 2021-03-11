@@ -1,22 +1,23 @@
-const { Sequelize } = require('sequelize');
-const db = require('../db');
+const { DataTypes } = require('sequelize');
 
 
-Pick = db.connection.define('pick',
+module.exports = (sequelize) => {
+
+	sequelize.define('pick',
 	{
 		Id: {
 			field: 'pickId',
-			type: Sequelize.INTEGER,
+			type: DataTypes.INTEGER,
 			primaryKey: true,
 			autoincrement: false
 		},
 		pickNumber: {
 			field: 'pickNumber',
-			type: Sequelize.INTEGER
+			type: DataTypes.INTEGER
 		},
 		teamId: {
 			field: 'teamId',
-			type: Sequelize.INTEGER,
+			type: DataTypes.INTEGER,
 			references: {
 				model: 'Team',
 				key: 'Id'
@@ -28,17 +29,6 @@ Pick = db.connection.define('pick',
 	}
 )
 
-
-
-Pick.associate = function(models){
-	Team.belongsTo(models.Team);
-}
-
-Pick.associate = function(models){
-	Team.belongsTo(models.Round);
-}
-
-
-module.exports = Pick;
+};
 
 

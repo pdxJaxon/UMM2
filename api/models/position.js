@@ -1,24 +1,24 @@
-const { Sequelize } = require('sequelize');
-const db = require('../db')
+const { DataTypes } = require('sequelize');
 
 
+module.exports = (sequelize) => {
 
-Position = db.connection.define('position',
+	sequelize.define('position',
 	{
 		Id: {
 			field: 'Id',
-			type: Sequelize.STRING,
+			type: DataTypes.STRING,
 			allowNull: false,
 			primaryKey: true
 		},
 		name: {
 			field: 'name',
-			type: Sequelize.STRING,
+			type: DataTypes.STRING,
 			allowNull: false
 		},
 		positionPriority: {
 			field: 'positionPriority',
-			type: Sequelize.INTEGER,
+			type: DataTypes.INTEGER,
 			allowNull: false
 		}
 	},
@@ -27,9 +27,6 @@ Position = db.connection.define('position',
 	}
 )
 
-
-
-
-module.exports = Position;
+};
 
 

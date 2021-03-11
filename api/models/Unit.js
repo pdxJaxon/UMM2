@@ -1,25 +1,27 @@
-const { Sequelize } = require('sequelize');
-const db = require('../db')
+const {  DataTypes  } = require('sequelize');
 
-//example: Offense, Defense, or Special Teams
-module.exports = db.connection.define('unit',
+
+module.exports = (sequelize) => {
+
+	sequelize.define('unit',
 	{
 		id: {
 			field: 'unitId',
-			type: Sequelize.INTEGER,
+			type: DataTypes.INTEGER,
 			primaryKey: true,
 			autoincrement: true
 		},
 		unitName: {
 			field: 'unitName',
-			type: Sequelize.STRING
+			type: DataTypes.STRING
 		},
 		unitAbbreviation: {
 			field: 'unitAbbreviation',
-			type: Sequelize.STRING
+			type: DataTypes.STRING
 		}
 	},
 	{
 		freezeTableName: true
 	}
 )
+};

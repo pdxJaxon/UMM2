@@ -1,5 +1,14 @@
 module.exports = {
   development: {
+    username: 'root',
+    password: null',
+    database: 'UMM.db',
+    host: '127.0.0.1',
+    storage: '~/UMM.sqlite',
+    dialect: 'sqlite',
+    logging: process.env.DB_LOG,
+  }
+  developmentold: {
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
