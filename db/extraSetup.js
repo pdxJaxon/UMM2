@@ -114,12 +114,34 @@ function SeedTeams(database){
   ],{validate:false});
 }
 
-function populateData(database) {
+async function populateData(database) {
 
 	
 	console.log("Starting to seed data");
 
-	SeedTeams(database);
+    try{
+        await Promise.all([
+                //independent self standing seeds
+                SeedTeams(database)
+                //,PositionSeed,
+                //DraftSeed
+            ]).then(() => {
+                //seeds that depend on FKs from above seeds
+                //RoundSeed
+                //,TeamNeedSeed
+                //,ProspectSeed
+            }).then(() => {
+                //PickSeed
+            }).then(() => {
+                console.log('All Seed Files Successfully Executed orchestrated...')
+            });
+    }
+    catch(err) {
+        console.error('Err Seeding DB', err);
+    };
+
+
+	
 
 
 	console.log("All Data Seeded");
