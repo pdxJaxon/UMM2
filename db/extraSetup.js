@@ -114,6 +114,65 @@ function SeedTeams(database){
   ],{validate:false});
 }
 
+
+
+
+function SeedPositions(database){
+    const queryInterface = database.getQueryInterface();
+    
+    queryInterface.bulkInsert('position',[
+    {Id: 'QB', name: 'Quarterback', positionPriority:100, createdAt: new Date(),updatedAt: new Date()},
+    {Id: 'WR', name: 'Wide Receiver', positionPriority:75, createdAt: new Date(),updatedAt: new Date()},
+    {Id: 'TE', name: 'Tight End', positionPriority:60, createdAt: new Date(),updatedAt: new Date()},
+    {Id: 'RB', name: 'Running BacK', positionPriority:70, createdAt: new Date(),updatedAt: new Date()},
+    {Id: 'FB', name: 'Fullback', positionPriority:30, createdAt: new Date(),updatedAt: new Date()},
+    {Id: 'OC', name: 'Center', positionPriority:70, createdAt: new Date(),updatedAt: new Date()},
+    {Id: 'OG', name: 'Guard', positionPriority:80, createdAt: new Date(),updatedAt: new Date()},
+    {Id: 'OT', name: 'Tackle', positionPriority:85, createdAt: new Date(),updatedAt: new Date()},
+    {Id: 'CB', name: 'Cornerback', positionPriority:80, createdAt: new Date(),updatedAt: new Date()},
+    {Id: 'S', name: 'Safety', positionPriority:60, createdAt: new Date(),updatedAt: new Date()},
+    {Id: 'LB', name: 'Linebacker', positionPriority:75, createdAt: new Date(),updatedAt: new Date()},
+    {Id: 'EDGE', name: 'Edge Rusher', positionPriority:90, createdAt: new Date(),updatedAt: new Date()},
+    {Id: 'DL', name: 'Defensive Lineman', positionPriority:75, createdAt: new Date(),updatedAt: new Date()},
+    {Id: 'K', name: 'Kicker', positionPriority:20, createdAt: new Date(),updatedAt: new Date()},
+    {Id: 'P', name: 'Punter', positionPriority:10, createdAt: new Date(),updatedAt: new Date()},
+    {Id: 'LS', name: 'Long Snapper', positionPriority:5, createdAt: new Date(),updatedAt: new Date()}
+    
+  ],{validate:false});
+}
+
+
+
+
+
+
+function SeedDraft(database){
+    const queryInterface = database.getQueryInterface();
+    
+    queryInterface.bulkInsert('draft',[
+        {Id: 2021, createdAt: new Date(),updatedAt: new Date()}
+  ],{validate:false});
+}
+
+
+
+
+
+
+
+
+
+/*
+This seeds our original static db content.
+Ideally, we would use seeder files for this (as you see in the project directory structure),
+but they stopped working and after days of fighting, I went this route.
+
+This should be a priortiy to refactor back to the use of actual Seeder files and\or Migration Files
+
+for now,......ugly, but this works.
+
+GAJ
+*/
 async function populateData(database) {
 
 	
@@ -123,8 +182,8 @@ async function populateData(database) {
         await Promise.all([
                 //independent self standing seeds
                 SeedTeams(database)
-                //,PositionSeed,
-                //DraftSeed
+                ,SeedPositions(database)
+                ,SeedDraft(database)
             ]).then(() => {
                 //seeds that depend on FKs from above seeds
                 //RoundSeed
