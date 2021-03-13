@@ -2,10 +2,12 @@ const express = require('express')
 const router = express.Router();
 
 const Prospect = require('../models/prospect');
+const {models} = require('../../db/index');
+
 
 router.get('/', async (req, res, next) => {
 	try {
-		prospects = await Prospect.findAll();
+		prospects = await models.prospect.findAll();
 		if (prospects.length > 0) {
 			return res.json(prospects);
 		}

@@ -4,12 +4,12 @@ const router = express.Router();
 
 const TeamNeed = require('../models/teamNeed');
 const Team = require('../models/team');
-
+const {models} = require('../../db/index');
 
 
 router.get('/', async (req, res, next) => {
 	try {
-		needs = await TeamNeed.findAll();
+		needs = await models.teamNeed.findAll();
 		if (needs.length > 0) {
 			return res.json(needs);
 		}
@@ -29,15 +29,24 @@ router.get('/:abbr', async (req,res,next) => {
 
 	console.log('NEEDS HERE-->' + abbr)
 	try {
-		const needs = await sequelize.query('SELECT * FROM TeamNeed', {
-			model:TeamNeed,
-			mapToModel:true
+		team = await models.team.findOne({
+			where: {
+				abbreviation: abbr
+			},
+			include: {model: models.teamNeed}
 		});
-		return res.json(needs);
-	} catch(e) {
-		console.log(e);
-			res.status(500).json({message: "An unexpected error occurred"});
+		if (team === null) {
+			res.status(404).json({message: "No FLIPPING team NEEDs found"});
+			
 		}
+		else{
+			const needs = await team.getTeamNeeds();
+			return res.json(needs);
+		}
+	} catch(err) {
+			console.log(err);
+			res.status(500).json({message: "An unexpected error occurred"});
+	}
 	
 	
 })
