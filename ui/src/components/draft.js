@@ -127,6 +127,7 @@ class Draft extends React.Component {
 						</td>
 						<td width="50%" align="right" valign="top">
 							<TeamNeeds needs={this.state.Needs} />
+							<hr/>
 							<PickedList picks={this.state.Picks} />
 						</td>
 					</tr>

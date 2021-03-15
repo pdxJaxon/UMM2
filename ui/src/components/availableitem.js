@@ -24,8 +24,8 @@ class AvailableItem extends React.Component {
 		return (
 			
 			<div>
-				<button id={this.props.prospect.id} onClick={(e) => this.handleClick(this.props.prospect.id,e)}>Select</button>&nbsp;
-				{this.props.prospect.fname + ' ' + this.props.prospect.lname + ' ' + this.props.prospect.year + ' ' + this.props.prospect.position + ' ' + this.props.prospect.school}
+				<button id={this.props.prospect.Id} onClick={(e) => this.handleClick(this.props.prospect.Id,e)}>Select</button>&nbsp;
+				{this.props.prospect.Id + ' ' + this.props.prospect.fname + ' ' + this.props.prospect.lname + ' ' + this.props.prospect.year + ' ' + this.props.prospect.position + ' ' + this.props.prospect.school}
 				
 			</div>
 			
