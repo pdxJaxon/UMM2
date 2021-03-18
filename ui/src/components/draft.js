@@ -72,7 +72,7 @@ class Draft extends React.Component {
 		
 		//get favorite teams needs
 		//fetch("http://localhost:3000/TeamNeeds/" + theTeam)
-		fetch("http://localhost:3000/TeamNeeds")
+		fetch("http://localhost:3000/TeamNeeds/" + theTeam)
 			.then((res) => res.json())
 			.then(
 				(result) => {
