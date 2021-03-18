@@ -3,6 +3,7 @@ const router = express.Router();
 
 const Prospect = require('../models/prospect');
 const {models} = require('../../db/index');
+const {Op} = require("sequelize");
 
 
 router.get('/', async (req, res, next) => {
@@ -17,6 +18,32 @@ router.get('/', async (req, res, next) => {
 			res.status(500).json({message: "An unexpected error occurred"});
 	}
 });
+
+
+router.get('/bpa/:sessionId', async (req, res, next) => {
+	try {
+		theMock = await models.mock.findOne({
+			where: {sessionId:theSessionId}
+		})
+		.then()
+		prospect = await models.prospect.findOne({
+			where: {
+				[Op.not]: [
+					{Id:[theMock.mockSelections.prospectId]}
+				]
+			}
+		});
+		if (prospects.length > 0) {
+			return res.json(prospects);
+		}
+		res.status(404).json({message: "No Prospects found"});
+	} catch(err) {
+			console.log(err);
+			res.status(500).json({message: "An unexpected error occurred"});
+	}
+});
+
+
 
 router.post('/', async (req, res, next) => {
 	

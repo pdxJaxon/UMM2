@@ -5,6 +5,7 @@ class AvailableItem extends React.Component {
 	constructor(props){
 		super(props);
 
+
 		this.handleClick = this.handleClick.bind(this);
 		this.draftPerson = this.draftPerson.bind(this);
 
@@ -17,6 +18,12 @@ class AvailableItem extends React.Component {
 
 	draftPerson(id){
 		console.log('draft person ' + id)
+
+		//#1 get next pick for this round
+		//#2 Update The ProspectId for the pick
+
+		//#3 Make Sure Prospect is removed from "Available List"
+		//#4 Make Sure Pick is Reflected in PicksMadeList
 	}
 
 	render(){
