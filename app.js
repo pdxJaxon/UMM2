@@ -15,6 +15,8 @@ const needRoutes = require('./api/routes/TeamNeeds');
 const draftRoutes = require('./api/routes/draft');
 const roundRoutes = require('./api/routes/DraftRounds');
 const positionRoutes = require('./api/routes/position');
+const mockRoutes = require('./api/routes/mocks');
+const mockSelectionRoutes = require('./api/routes/mockSelections');
 
 
 
@@ -81,6 +83,8 @@ async function init(){
 		app.use('/drafts', draftRoutes);
 		app.use('/rounds', roundRoutes);
 		app.use('/positions', positionRoutes);
+		app.use('/mocks', mockRoutes);
+		app.use('/mockSelections', mockSelectionRoutes);
 
 		
 		

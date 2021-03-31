@@ -17,6 +17,8 @@ class Draft extends React.Component {
 		let theTeam = "PIT";
 		let sessionId = uuid();
 
+		console.log("Session:" + sessionId);
+
 		this.state = {
 			isLoaded: false,
 			AvailableProspects: [],
@@ -24,6 +26,9 @@ class Draft extends React.Component {
 			Needs: [],
 			Team: theTeam,
 			SessionId: sessionId,
+			UserId: 0,
+			Mock:[],
+			CurrentPick:[],
 			err: null
 		};
 
@@ -94,30 +99,37 @@ class Draft extends React.Component {
 
 
 
+
 	//Get all picks for the Draft
 	getAllPicks(){
 		fetch("http://localhost:3000/picks")
 			.then(res => res.json())
 			.then(
 				(result) => {
-					
+					console.log("Picks are here " + result);
 					this.setState({
 						isLoaded:true,
 						Picks:result
 					});
 				},
-			(err) => {
-				
-				this.setState({
-					isLoaded: true,
-					err: err
-				});
-			}
-		)
+				(err) => {
+					this.setState({
+						isLoaded: true,
+						err: err
+					});
+				}
+			)
+
+
+
+
+
 	}
 
 
-	AddMock(sessionId){
+
+	//Add a new Mock Draft for User for this Session\Instance
+	AddMock(sessionId,UserId,picks){
 		fetch("http://localhost:3000/mocks", {
 			"method": "POST",
 			"headers": {
@@ -125,28 +137,41 @@ class Draft extends React.Component {
 				"accept":"application/json"
 			},
 			"body": JSON.stringify({
-				sessionId:this.state.sessionId,
-				userId:this.state.userId
+				sessionId:sessionId,
+				userId:UserId
 			})
 		})
 		.then(res => res.json())
+		.then(res => {
+			this.setState({Mock:res})
+			console.log("I JUST WROTE THIS POS:" + this.state.Mock)
+			return res;
+			}
+		)
+		.then(async res => {
+			 //for each pick in the draft, add a mockselection record
+			 Object.keys(picks).forEach((key)=> {
+			 	//console.log(picks[key]);
+			 	this.addMockSelection(res.Id,picks[key].Id,null);
+			 });
+		}
+		)
 		.then(
 			(err) => {
-			
-			this.setState({
+				this.setState({
 				isLoaded: true,
 				err: err
 			});
 			}
 		)
 		
+
+
 	}
 
 
-
+	//Add A Selection for a specific Mock Draft
 	addMockSelection(theMockId,thePickId,theProspectId){
-
-		//MockSelection.create(TheMock.Id,p.Id,theProspect.Id);
 
 		fetch("http://localhost:3000/MockSelections", {
 			"method": "POST",
@@ -173,18 +198,86 @@ class Draft extends React.Component {
 
 
 	}
+
+
+
+
+
+	//Update the MockSelection with the prospect selected
+	updateMockSelection(theMockId,thePickId,theProspectId){
+
+		fetch("http://localhost:3000/MockSelections", {
+			"method": "PUT",
+			"headers": {
+				"content-type":"application/json",
+				"accept":"application/json"
+			},
+			"body": JSON.stringify({
+				mockId:theMockId,
+				pickId:thePickId,
+				prospectId:theProspectId
+			})
+		})
+		.then(res => res.json())
+		.then(
+			(err) => {
+			
+			this.setState({
+				isLoaded: true,
+				err: err
+			});
+			}
+		)
+
+
+	}
+
+
+
+	getMock(sessionId){
+		
+
+		//get favorite teams needs
+		//fetch("http://localhost:3000/TeamNeeds/" + theTeam)
+		fetch("http://localhost:3000/Mocks/Session/" + sessionId)
+			.then((res) => { 
+				return res.json()
+				}
+			)
+			
+	}
+
+
+
+	//VERY simple logic that simply grabs the best player still undrafted
+	//We currently use ProFootball Focus's List of Prospects for the rankings (www.pff.com)
+	getBPA(sessionId){
+		//get first player not found in the already picked list
+		//players are sorted by value already....first unpicked player is 
+		//BPA (Best Player Available) Which allows us a VERY Simplistic way
+		//of drafting for now.....(version 1.0)
+		fetch("http://localhost:3000/prospects/bpa/" + sessionId)
+			.then(res => res.json())
+			.then(data =>  {
+				this.setState({CurrentPick:data})
+			})
+	}
+	
+
 	
 
 
 	doDraft(e){
-		console.log("CLICKY CLICKY ");
+		
+		let picks = this.state.Picks
 
 		//A: Create New Mock Record For Session
-		let TheMock = this.AddMock(this.state.sessionId);
-
+		this.AddMock(this.state.SessionId,this.state.UserId,picks);
+	
 		//#1 get all rounds
 		//#2 for each round, get all picks
-		let picks = this.state.picks
+		
+		
 		
 		
 		//#3 for Each pick:
@@ -193,8 +286,13 @@ class Draft extends React.Component {
 		//#4 //If NOT My Team
 				//Select BPA
 				const pickItems = picks.map((p) => {
-					let theProspect = this.getBPA(this.state.sessionID);
-					let ThisMockSelection = this.addMockSelection(TheMock.Id,p.Id,theProspect.Id);
+					this.getBPA(this.state.SessionId);
+					let theProspect = this.state.CurrentPick;
+
+					console.log("WePicked" + theProspect);
+					let ThisMockSelection = this.updateMockSelection(this.state.Mock.Id,p.Id,theProspect.Id);
+
+					//
 					p.prospectId = theProspect.Id;
 					}
 				);
@@ -218,16 +316,7 @@ class Draft extends React.Component {
 
 
 
-	//VERY simple logic that simply grabs the best player still undrafted
-	//We currently use ProFootball Focus's List of Prospects for the rankings (www.pff.com)
-	getBPA(sessionId){
-		//get first player not found in the already picked list
-		//players are sorted by value already....first unpicked player is 
-		//BPA (Best Player Available) Which allows us a VERY Simplistic way
-		//of drafting for now.....(version 1.0)
-		fetch("http://localhost:3000/prospects/bpa/:sessionId")
-			.then(res => res.json());
-	}
+	
 
 
 

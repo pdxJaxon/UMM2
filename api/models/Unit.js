@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
 			field: 'unitId',
 			type: DataTypes.INTEGER,
 			primaryKey: true,
-			autoincrement: true
+			autoIncrement: true
 		},
 		unitName: {
 			field: 'unitName',

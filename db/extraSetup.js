@@ -55,6 +55,7 @@ async function applyExtraSetup(sequelize) {
     mockSelection.belongsTo(pick);
     mockSelection.belongsTo(prospect);
     mockSelection.belongsTo(mock);
+    mock.hasMany(mockSelection);
 
 
 	dropConstraints(sequelize);
