@@ -1,15 +1,17 @@
 const express = require('express')
 const router = express.Router();
 
+const {models} = require('../../db/index');
+const {Op} = require("sequelize");
+
 const Pick = require('../models/pick');
-const Team = require('../models/team');
 
 
 
 
 router.get('/',async (req,resp,next) => {
 	try {
-		picks = await Pick.findAll();
+		picks = await models.pick.findAll();
 		if (picks.length > 0) {
 			return resp.json(picks);
 		}

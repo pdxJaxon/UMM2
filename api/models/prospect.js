@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
 			field: 'Id',
 			type: DataTypes.INTEGER,
 			primaryKey: true,
-			autoincrement: false
+			autoIncrement: false
 		},
 		fname: {
 			field: 'FName',

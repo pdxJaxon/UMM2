@@ -3,13 +3,13 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
 
-	sequelize.define('Mock',
+	sequelize.define('mock',
 	{
 		Id: {
-			field: 'mockId',
+			field: 'Id',
 			type: DataTypes.INTEGER,
 			primaryKey: true,
-			autoincrement: true
+			autoIncrement: true
 		},
 		userId: {
 			field: 'userId',

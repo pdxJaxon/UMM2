@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
 			field: 'CollegeId',
 			type: DataTypes.INTEGER,
 			primaryKey: true,
-			autoincrement: true
+			autoIncrement: true
 		},
 		Name: {
 			field: 'CollegeName',

@@ -1,6 +1,6 @@
 import React from 'react'
 
-
+import NeedItem from './NeedItem'
 
 
 class TeamNeedsList extends React.Component {
@@ -30,9 +30,10 @@ class TeamNeedsList extends React.Component {
 		return (
 			<div className="teamNeedsList">
 				{this.props.needs.map((aNeed)=>(
-					JSON.stringify(aNeed)
+					<NeedItem key={aNeed.Id} need={aNeed} />
 				))}
 			</div>
+
 			
 		);
 	}

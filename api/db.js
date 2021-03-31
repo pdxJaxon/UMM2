@@ -1,10 +1,6 @@
 const { Sequelize } = require('sequelize');
 
 
-const Team = require('./models/team');
-const TeamNeed = require('./models/teamNeed');
-
-
 
 exports.DEFAULT_DB_NAME = 'umm2_test';
 

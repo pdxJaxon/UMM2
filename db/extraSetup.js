@@ -36,13 +36,9 @@ function dropConstraints(database) {
 
 
 async function applyExtraSetup(sequelize) {
-	const { team,prospect,position,draft,pick,teamNeed,school,round } = sequelize.models;
+	const { team,prospect,position,draft,pick,teamNeed,school,round,mock,mockSelection } = sequelize.models;
 	
 	
-
-	//orchestra.hasMany(instrument);
-	//instrument.belongsTo(orchestra);
-
 	team.hasMany(teamNeed);
 	teamNeed.belongsTo(team);
 	teamNeed.belongsTo(position);
@@ -56,6 +52,10 @@ async function applyExtraSetup(sequelize) {
     team.hasMany(pick);
     round.belongsTo(draft);
     draft.hasMany(round);
+    mockSelection.belongsTo(pick);
+    mockSelection.belongsTo(prospect);
+    mockSelection.belongsTo(mock);
+    mock.hasMany(mockSelection);
 
 
 	dropConstraints(sequelize);

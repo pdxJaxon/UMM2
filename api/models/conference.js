@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
 			field: 'conferenceId',
 			type: DataTypes.INTEGER,
 			primaryKey: true,
-			autoincrement: true
+			autoIncrement: true
 		},
 		abbreviation: {
 			field: 'abbreviation',
