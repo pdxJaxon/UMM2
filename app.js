@@ -1,6 +1,10 @@
 const express = require('express');
 const sequelize = require('./db/index');
 
+const cors = require('cors');
+
+
+
 const PORT = process.env.PORT || 3000;
 
 
@@ -27,7 +31,7 @@ const mockSelectionRoutes = require('./api/routes/mockSelections');
 
 const app = express();
 
-
+app.use(cors({origin: true}));
 
 
 async function assertDatabaseConnectionOk(){

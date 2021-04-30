@@ -3,7 +3,7 @@
 Description pending
 
 TO Start the Server:
-From UMM2 Root: NODE_ENV=DEV node server
+From UMM2 Root: NODE_ENV=DEV node app
 
 FROM ui: yarn start
 
