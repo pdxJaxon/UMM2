@@ -43,6 +43,38 @@ router.post('/',async (req,res)=>{
 
 
 
+//TODO: THIS UPDATE STATEMENT NEEDS TO BE WIRED UP CORRECTLY>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//update a mockSelection
+router.put('/',async (req,res)=>{
+	theMockId = req.body.mockId;
+	thePickId = req.body.pickId;
+	theProspectId = req.body.prospectId;
+	console.log("Body Contents:" + JSON.stringify(req.body))
+	console.log("UPDATING THE SELECTION " + thePickId)
+
+	try{
+		await models.mockSelection.update({
+			prospectId:theProspectId
+		},
+		{
+			where: {
+				mockID:theMockId,
+				pickId:thePickId
+			}
+		}
+		)
+		.then((m) => {
+			res.json(m);
+			console.log("MockSelection Updated-->"  + m)
+		})
+	} catch(err) {
+		console.log("WE BLEW UP" + err);
+		res.status(500).json({message: "An unexpected error occurred"});
+	}
+})
+
+
+
 
 
 

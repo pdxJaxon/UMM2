@@ -28,6 +28,7 @@ class Draft extends React.Component {
 			SessionId: sessionId,
 			UserId: 0,
 			Mock:[],
+			theMockId: 0,
 			CurrentPick:[],
 			err: null
 		};
@@ -145,6 +146,7 @@ class Draft extends React.Component {
 		.then(res => {
 			this.setState({Mock:res})
 			console.log("I JUST WROTE THIS POS:" + this.state.Mock)
+			this.setState({theMockId:res.Id})
 			return res;
 			}
 		)
@@ -205,7 +207,8 @@ class Draft extends React.Component {
 
 	//Update the MockSelection with the prospect selected
 	updateMockSelection(theMockId,thePickId,theProspectId){
-
+		console.log("WE ARE TRYING TO UPDATE MOCK SELECTION")
+		console.log("PARMS",theMockId,thePickId,theProspectId)
 		fetch("http://localhost:3000/MockSelections", {
 			"method": "PUT",
 			"headers": {
@@ -251,16 +254,25 @@ class Draft extends React.Component {
 
 	//VERY simple logic that simply grabs the best player still undrafted
 	//We currently use ProFootball Focus's List of Prospects for the rankings (www.pff.com)
-	getBPA(sessionId){
+	getBPA(sessionId,pickid,mockid){
 		//get first player not found in the already picked list
 		//players are sorted by value already....first unpicked player is 
 		//BPA (Best Player Available) Which allows us a VERY Simplistic way
 		//of drafting for now.....(version 1.0)
+
+		console.log("GET BPA PARMS",sessionId,pickid,mockid)
+
 		fetch("http://localhost:3000/prospects/bpa/" + sessionId)
 			.then(res => res.json())
 			.then(data =>  {
+				console.log("BPA" + JSON.stringify(data))
 				this.setState({CurrentPick:data})
+				console.log("BPA STATE SET-->" + JSON.stringify(this.state.CurrentPick))
+				this.updateMockSelection(mockid,pickid,data.Id);
 			})
+			
+			
+			
 	}
 	
 
@@ -285,20 +297,21 @@ class Draft extends React.Component {
 
 		//#4 //If NOT My Team
 				//Select BPA
-				const pickItems = picks.map((p) => {
-					this.getBPA(this.state.SessionId);
-					let theProspect = this.state.CurrentPick;
 
-					console.log("WePicked" + theProspect);
-					let ThisMockSelection = this.updateMockSelection(this.state.Mock.Id,p.Id,theProspect.Id);
+				//TODO: Something is screwed up in this loop re: theProspect (call to getBPA seems to actually work)
+		const pickItems = picks.map((p) => {
+			console.log("DoDraft parms",this.state.SessionId,p.Id,this.state.theMockId)
+			this.getBPA(this.state.SessionId,p.Id,this.state.theMockId);
+			
 
-					//
-					p.prospectId = theProspect.Id;
-					}
-				);
+			//
+			
+
+			}
+		);
 			 //Else
 			    //Let User Select
-			console.log("did it work? " + pickItems);
+		
 
 		//the Team has already been determined for this pick (by the NFL)
 		//We just add a record for this session's mock and indicate which player was selected
